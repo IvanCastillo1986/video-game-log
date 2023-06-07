@@ -3,7 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './layout/Navbar';
 import Home from './pages/home/Home';
-import Log from './pages/log/Log';
+import PC from './pages/pc/PC';
+import Nintendo from './pages/nintendo/Nintendo';
+import Sega from './pages/sega/Sega';
 import NotFound from './pages/not_found/NotFound';
 
 import './App.scss';
@@ -18,11 +20,15 @@ function App() {
     <div className="App">
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/log" element={<Log />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pc" element={<PC />} />
+          <Route path="/nintendo" element={<Nintendo />} />
+          <Route path="/sega" element={<Sega />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
 
     </div>
 
