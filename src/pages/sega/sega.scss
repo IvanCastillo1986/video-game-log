@@ -1,0 +1,12 @@
+.sega {
+    h1 {
+        font-family: 'Sega';
+    }
+}
+
+
+// WHY ISN'T THIS WORKING?
+@font-face {
+    font-family: 'Sega';
+    src: url(../../fonts/SEGA.ttf)
+}

@@ -14,7 +14,9 @@ export default function Navbar() {
             <nav className='navbar'>
                 <ul>
                     <div className='logo'>
-                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/">
+                            <span className='navbar__faulty-letter-one'>H</span>o<span className='navbar__faulty-letter-two'>m</span>e
+                        </Link></li>
                     </div>
                     <div className='navbar__links'>
                         <li><Link to="pc">PC</Link></li>
