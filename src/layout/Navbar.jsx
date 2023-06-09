@@ -7,15 +7,18 @@ import './navbar.scss'
 
 export default function Navbar() {
 
-
+    const stopAnimation = (e) => {
+        console.log(e.target.style.animationPlayState === 'paused')
+        e.target.style.animationPlayState = 'paused'
+    }
     
     return (
         <>
             <nav className='navbar'>
                 <ul>
                     <div className='logo'>
-                        <li><Link to="/">
-                            <span className='navbar__faulty-letter-one'>H</span>o<span className='navbar__faulty-letter-two'>m</span>e
+                        <li onMouseEnter={(e) => stopAnimation(e)}><Link to="/">
+                            <span className='navbar__faulty-letter-one'>H</span>om<span className='navbar__faulty-letter-two'>e</span>
                         </Link></li>
                     </div>
                     <div className='navbar__links'>

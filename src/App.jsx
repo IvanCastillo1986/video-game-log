@@ -21,11 +21,12 @@ function App() {
       <Navbar />
 
       <main>
+        {/* Our Route paths are succeeded by an asterisk because  */}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/pc" element={<PC />} />
-          <Route path="/nintendo" element={<Nintendo />} />
-          <Route path="/sega" element={<Sega />} />
+          <Route index element={<Home />} />
+          <Route path="pc/*" element={<PC />} />
+          <Route path="nintendo/*" element={<Nintendo />} />
+          <Route path="sega/*" element={<Sega />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

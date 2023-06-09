@@ -28,10 +28,11 @@
         font-size: 25px;
         font-weight: bold;
         text-decoration: none;
-        animation: pulsate 2s infinite;
     }
     a:hover {
         color: #9cf3ff;
+        // this is not working
+        animation-play-state: paused;
     }
 
     &__faulty-letter-one {
@@ -39,7 +40,7 @@
         animation: faulty-flicker-one 2s infinite;
     }
     &__faulty-letter-two {
-        animation: faulty-flicker-two 4s infinite;
+        animation: pulsate 3s infinite;
     }
 
     &__sun {
@@ -52,6 +53,11 @@
         overflow: hidden;
         z-index: -99;
         box-shadow: inset 0 0 10px 1px #f9700e, 0 0 20px 1px #f9700e;
+    }
+
+    // this pauses animation on hover
+    .paused {
+        animation-play-state: paused;
     }
 
 
@@ -82,7 +88,7 @@
     }
     @keyframes pulsate {
         0% {opacity: 1;}
-        50% {opacity: 0.8;}
+        50% {opacity: 0.6;}
         100% {opacity: 1;}
     }
 
