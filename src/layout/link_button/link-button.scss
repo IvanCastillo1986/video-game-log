@@ -1,0 +1,57 @@
+.link-btn-container {
+    margin: 50px;
+
+    &__button {
+        // background: linear-gradient(135deg, #540d6e, #0d0221 45%, #0d0221 55%, #540d6e);
+        // background: linear-gradient(135deg, #0d0221, #540d6e 45%, #540d6e 55%, #0d0221);
+        background: #0d0221;
+        width: 100px;
+        height: 40px;
+        border-radius: 10px;
+        border: 3px solid #719e94;
+        border: none;
+        box-shadow: 0 0 13px 3px #f706cf;
+        padding: 14px 18px;
+        color: #f706cf;
+        font-size: 1.2em;
+        font-family: monospace;
+        // Using glimmer animation only for Platform component 'Add Game' button
+        animation: none;
+    }
+
+    @keyframes glimmer {
+        0% {background: #0d0221;}
+        53.6% {background: #0d0221;}
+        53.7% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 .001%, #0d0221);}
+        53.8% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 .003%, #0d0221);}
+        53.9% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 .005%, #0d0221);}
+        54% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 .007%, #0d0221);}
+        54.1% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 .009%, #0d0221);}
+        54.2% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 1%, #0d0221);}
+        54.3% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 2%, #0d0221);}
+        54.4% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 3%, #0d0221);}
+        54.5% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 4%, #0d0221);}
+        54.6% {background: linear-gradient(135deg, #0d0221, #791e94 0%, #791e94 5%, #0d0221);}
+        54.7% {background: linear-gradient(135deg, #0d0221, #791e94 5%, #791e94 15%, #0d0221);}
+        54.8% {background: linear-gradient(135deg, #0d0221, #791e94 15%, #791e94 25%, #0d0221);}
+        54.9% {background: linear-gradient(135deg, #0d0221, #791e94 25%, #791e94 35%, #0d0221);}
+        55% {background: linear-gradient(135deg, #0d0221, #791e94 35%, #791e94 45%, #0d0221);}
+        55.1% {background: linear-gradient(135deg, #0d0221, #791e94 45%, #791e94 55%, #0d0221);}
+        55.2% {background: linear-gradient(135deg, #0d0221, #791e94 55%, #791e94 65%, #0d0221);}
+        55.3% {background: linear-gradient(135deg, #0d0221, #791e94 65%, #791e94 75%, #0d0221);}
+        55.4% {background: linear-gradient(135deg, #0d0221, #791e94 75%, #791e94 85%, #0d0221);}
+        55.5% {background: linear-gradient(135deg, #0d0221, #791e94 85%, #791e94 95%, #0d0221);}
+        55.6% {background: linear-gradient(135deg, #0d0221, #791e94 95%, #791e94 100%, #0d0221);}
+        55.7% {background: linear-gradient(135deg, #0d0221, #791e94 96%, #791e94 100%, #0d0221);}
+        55.8% {background: linear-gradient(135deg, #0d0221, #791e94 97%, #791e94 100%, #0d0221);}
+        55.9% {background: linear-gradient(135deg, #0d0221, #791e94 98%, #791e94 100%, #0d0221);}
+        60% {background: linear-gradient(135deg, #0d0221, #791e94 99%, #791e94 100%, #0d0221);}
+        60.1% {background: linear-gradient(135deg, #0d0221, #791e94 99.199%, #791e94 100%, #0d0221);}
+        60.2% {background: linear-gradient(135deg, #0d0221, #791e94 99.399%, #791e94 100%, #0d0221);}
+        60.3% {background: linear-gradient(135deg, #0d0221, #791e94 99.599%, #791e94 100%, #0d0221);}
+        60.4% {background: linear-gradient(135deg, #0d0221, #791e94 99.799%, #791e94 100%, #0d0221);}
+        60.5% {background: linear-gradient(135deg, #0d0221, #791e94 99.999%, #791e94 100%, #0d0221);}
+        60.6% {background: #0d0221;}
+    }
+}
+

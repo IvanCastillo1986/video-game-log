@@ -8,7 +8,9 @@ html, body {
 }
 
 body {
-  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: monospace;
+  font-size: 1.3em;
 }
