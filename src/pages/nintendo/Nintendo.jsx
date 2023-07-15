@@ -1,5 +1,5 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Platform from '../../components/platform/Platform'
 import ChooseConsole from '../../components/choose_console/ChooseConsole'
@@ -11,8 +11,10 @@ import './nintendo.scss'
 
 
 export default function Nintendo() {
+    
+    const {state} = useLocation()
 
-    const consoleLinks = [
+    const gameConsoleLinks = [
         {
             name: 'Nintendo Entertainment System (NES)',
             url: 'nes'
@@ -28,18 +30,17 @@ export default function Nintendo() {
     ]
 
 
-
     return (
         <div className='nintendo'>
             <h1>Nintendo</h1>
 
             <Routes>
                 <Route index 
-                    element={<ChooseConsole consoleLinks={consoleLinks} /> } 
+                    element={<ChooseConsole gameConsoleLinks={gameConsoleLinks} /> } 
                 />
                 
                 <Route path="snes" 
-                    element={<Platform console={"Super Nintendo Entertainment System"} games={snesGames} />}
+                    element={<Platform gameConsole={"Super Nintendo Entertainment System"} />}
                 />
             </Routes>
         </div>

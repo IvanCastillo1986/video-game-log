@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { snesGames } from '../../models/snesGames'
 
@@ -7,6 +8,8 @@ import './game-form.scss'
 
 
 export default function GameForm() {
+
+    const navigate = useNavigate()
 
     const [game, setGame] = useState({
         title: '',
@@ -21,9 +24,14 @@ export default function GameForm() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        snesGames.push(game)
-        console.log(snesGames)
+
+        const newSnesGames = [...snesGames]
+
+        newSnesGames.push(game)
+        console.log(newSnesGames)
+        navigate("/nintendo/snes", {state: { newSnesGames: newSnesGames } })
     }
+    
 
 
 

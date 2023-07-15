@@ -5,7 +5,7 @@ import './chooseConsole.scss'
 
 
 
-export default function ChooseConsole({ consoleLinks }) {
+export default function ChooseConsole({ gameConsoleLinks }) {
 
         
     return (
@@ -13,8 +13,8 @@ export default function ChooseConsole({ consoleLinks }) {
             <h2>Which console would you like to browse through?</h2>
 
             <ul>
-                {consoleLinks.map(console => 
-                    <li> <Link to={console.url}>{console.name}</Link> </li>
+                {gameConsoleLinks.map(gameConsole => 
+                    <li key={gameConsole.name}> <Link to={gameConsole.url}>{gameConsole.name}</Link> </li>
                 )}
             </ul>
         </div>

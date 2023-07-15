@@ -18,6 +18,7 @@
         font-weight: bold;
         // Using glimmer animation only for Platform component 'Add Game' button
         animation: none;
+        cursor: pointer;
     }
 
     @keyframes glimmer {
