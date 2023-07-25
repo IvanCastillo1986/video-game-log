@@ -1,5 +1,9 @@
+@import '../../design-utils/colors';
+
 .loading {
     display: grid;
     justify-content: center;
     padding-top: 40px;
+
+    color: $neon-blue;
 }

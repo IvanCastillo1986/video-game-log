@@ -7,7 +7,7 @@ import './chooseConsole.scss'
 
 export default function ChooseConsole({ gameConsoleLinks }) {
 
-        
+    
     return (
         <div className='choose-console'>
             <h2>Which console would you like to browse through?</h2>

@@ -1,3 +1,6 @@
+@import '../../design-utils/colors';
+
+
 .navbar {
     background: linear-gradient(#2e2157, #2e2157 65%, #840b67 85%, #f6019d);
     height: 35vh;
@@ -23,14 +26,14 @@
         list-style: none;
     }
     a {
-        color: #2ed2e6;
-        text-shadow: #2ed2e6 1px 0 10px;
+        color: $neon-blue;
+        text-shadow: $neon-blue 1px 0 10px;
         font-size: 25px;
         font-weight: bold;
         text-decoration: none;
     }
     a:hover {
-        color: #9cf3ff;
+        color: $active-blue;
         // this is not working
         animation-play-state: paused;
     }

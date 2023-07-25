@@ -1,18 +1,21 @@
+@import '../../design-utils/colors';
+
+
 .link-btn-container {
     margin: 50px;
 
     &__button {
         // background: linear-gradient(135deg, #540d6e, #0d0221 45%, #0d0221 55%, #540d6e);
         // background: linear-gradient(135deg, #0d0221, #540d6e 45%, #540d6e 55%, #0d0221);
-        background: #0d0221;
+        background: $nighttime;
         width: 100px;
         height: 40px;
         border-radius: 10px;
         border: 3px solid #719e94;
         border: none;
-        box-shadow: 0 0 13px 3px #f706cf;
+        box-shadow: 0 0 13px 3px $neon-fuscia;
         padding: 14px 18px;
-        color: #f706cf;
+        color: $neon-fuscia;
         font-size: 1.2em;
         font-family: monospace;
         font-weight: bold;

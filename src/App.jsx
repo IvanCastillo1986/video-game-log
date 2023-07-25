@@ -12,7 +12,6 @@ import NotFound from './pages/not_found/NotFound';
 import './App.scss';
 
 
-
 function App() {
 
   
