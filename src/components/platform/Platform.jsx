@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
+import Loading from '../loading/Loading';
 import LinkButton from '../../layout/link_button/LinkButton';
 
 import './platform.scss';
@@ -14,19 +15,48 @@ const API = process.env.REACT_APP_API_URL;
 
 export default function Platform({ gameConsole }) {
     const [games, setGames] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const location = useLocation();
-
-    const url = location.pathname.split("/")[location.pathname.split("/").length-1]
+    const url = location.pathname.split("/")[location.pathname.split("/").length-1];
 
 
     useEffect(() => {
-        axios.get(`${API}/${url}Games`)
-            .then(res => setGames(res.data))
-            .catch(err => console.error(`Error in video game log REACT APP ${err}`))
+        try {
+            setLoading(true);
+
+            axios.get(`${API}/${url}Games`)
+            .then(res => {
+                console.log(res)
+                setGames(res.data.snesGamesArray);
+                setLoading(false);
+            }).catch(err => {
+                console.error(`Error in video game log REACT APP ${err}`);
+            })
+        } catch(err) {
+            setLoading(false);
+            console.log(`<Platform /> useEffect error: ${err.message}`);
+        }
 
     }, [])
 
+    const renderContent = () => {
+        if (loading) {
+            return <Loading />
+        } else {
+            return games.map(game => 
+                <li className='platform__game' key={game.name}>
+                    <span>Name: {game.name} | Region: {game.region} | Year Released: {game.date_released}</span>
+                     <LinkButton 
+                        url={"/add-game"}
+                        btnContainerStyle={{display: 'inline'}} 
+                        btnStyle={{background: '#2ed2e6', color: 'black', boxShadow: '0 0 13px 3px #2ed2e6', fontWeight: 'bold'}}
+                        message='Update Game' 
+                    />
+                </li>
+            )
+        }
+    }
 
 
 
@@ -37,7 +67,8 @@ export default function Platform({ gameConsole }) {
 
             <h2>Games</h2>
             <ul>
-                {games &&
+                {renderContent()}
+                {/* {games &&
                 games.map(game => 
                         <li className='platform__game' key={game.name}>
                             <span>Name: {game.name} | Region: {game.region} | Year Released: {game.date_released}</span>
@@ -49,7 +80,7 @@ export default function Platform({ gameConsole }) {
                             />
                         </li>
                     )
-                }
+                } */}
             </ul>
         </div>
     )

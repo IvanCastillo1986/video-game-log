@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Platform from '../../components/platform/Platform'
 import ChooseConsole from '../../components/choose_console/ChooseConsole'
-import { snesGames } from '../../models/snesGames'
 
 
 import './nintendo.scss'
