@@ -19,7 +19,7 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function Platform({ gameConsole }) {
     const [games, setGames] = useState([]);
-    const [gameTitle, setGameTitle] = useState('contra3')
+    const [showInfo, setShowInfo] = useState(false);
     const [loading, setLoading] = useState(false);
     
     const location = useLocation();
@@ -54,31 +54,39 @@ export default function Platform({ gameConsole }) {
 
     }, [])
 
+    const handleShowInfo = (e) => {
+        setShowInfo(!showInfo)
+    }
+
     const renderContent = () => {
         if (loading) {
             return <Loading />
         } else {
             return games.map(game => 
-                
-                <li className='platform__game' key={game.name}>
-                    <div className='platform__game-info'>
-                        Name: {game.name} | Region: {game.region} | Year Released: {game.date_released}
-                    </div>
+                <div className='platform__game-wrapper'>
+                    <li className='platform__game' key={game.name}>
                     
-                    <LinkButton 
-                        url=''
-                        btnContainerStyle={{display: 'inline', gridColumnStart: '4'}}
-                        btnStyle={{background: '#f9700e', color: 'black', boxShadow: '0 0 13px 3px #f9700e,', fontWeight: 'bold'}}
-                        message='Show Info' 
-                    />
-                    
-                    <LinkButton 
-                        url={"/add-game"}
-                        btnContainerStyle={{display: 'inline', gridColumnStart: '5'}} 
-                        btnStyle={{background: '#2ed2e6', color: 'black', boxShadow: '0 0 13px 3px #2ed2e6', fontWeight: 'bold'}}
-                        message='Update Game' 
-                    />
-                </li>
+                        <div className='platform__game-info'>
+                                Title: {game.name} | Region: {game.region} | Year Released: {game.date_released}
+                        </div>
+                        
+                        <LinkButton 
+                            handleShowInfo={handleShowInfo}
+                            url=''
+                            btnContainerStyle={{display: 'inline', gridColumnStart: '4'}}
+                            btnStyle={{background: '#f9700e', color: 'black', boxShadow: '0 0 13px 3px #f9700e,', fontWeight: 'bold'}}
+                            message='Show Info' 
+                        />
+                        
+                        <LinkButton 
+                            url={"/add-game"}
+                            btnContainerStyle={{display: 'inline', gridColumnStart: '5'}} 
+                            btnStyle={{background: '#2ed2e6', color: 'black', boxShadow: '0 0 13px 3px #2ed2e6', fontWeight: 'bold'}}
+                            message='Update Game' 
+                        />
+                    </li>
+                    {showInfo && <GameDetails />}
+                </div>
             )
         }
     }

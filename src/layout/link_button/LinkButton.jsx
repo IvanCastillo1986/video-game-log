@@ -5,7 +5,7 @@ import './link-button.scss'
 
 
 
-export default function LinkButton({ url, message, btnStyle, btnContainerStyle }) {
+export default function LinkButton({ url, message, btnStyle, btnContainerStyle, handleShowInfo }) {
 
     
     return (
@@ -13,7 +13,7 @@ export default function LinkButton({ url, message, btnStyle, btnContainerStyle }
             { url ?
                 <Link className='link-btn-container__button' to={url} style={btnStyle}> {message} </Link>
                 :
-                <button className='link-btn-container__button' >{message}</button>
+                <button onClick={handleShowInfo} className='link-btn-container__button' >{message}</button>
             }
         </div>
     )
