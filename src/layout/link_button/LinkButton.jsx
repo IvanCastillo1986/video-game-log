@@ -10,7 +10,11 @@ export default function LinkButton({ url, message, btnStyle, btnContainerStyle }
     
     return (
         <div className='link-btn-container' style={btnContainerStyle}>
-            <Link className='link-btn-container__button' to={url} style={btnStyle}>{message}</Link>
+            { url ?
+                <Link className='link-btn-container__button' to={url} style={btnStyle}> {message} </Link>
+                :
+                <button className='link-btn-container__button' >{message}</button>
+            }
         </div>
     )
 }

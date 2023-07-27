@@ -38,7 +38,7 @@ export default function Nintendo() {
                     element={<ChooseConsole gameConsoleLinks={gameConsoleLinks} /> } 
                 />
                 
-                <Route path="snes" 
+                <Route path="snes/*" 
                     element={<Platform gameConsole={"Super Nintendo Entertainment System"} />}
                 />
             </Routes>
