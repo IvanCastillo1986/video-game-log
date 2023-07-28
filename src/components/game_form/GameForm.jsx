@@ -8,7 +8,7 @@ const API = process.env.REACT_APP_API_URL
 
 
 
-export default function GameForm({ method, idx }) {
+export default function GameForm({ idx }) {
 
     const navigate = useNavigate()
 
@@ -50,7 +50,7 @@ export default function GameForm({ method, idx }) {
 
     return (
         <>
-            <form className='game-form' onSubmit={method === 'post' ? addGame : editGame}>
+            <form className='game-form' onSubmit={idx ? editGame : addGame}>
                 <label htmlFor="title">Title:</label>
                 <input type="text" placeholder='Title' id='title' value={game.title} onChange={handleChange} required />
                 

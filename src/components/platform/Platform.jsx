@@ -5,6 +5,8 @@ import axios from 'axios';
 import Loading from '../loading/Loading';
 import GameDetails from '../game_details/GameDetails';
 import LinkButton from '../../layout/link_button/LinkButton';
+import { FaTrashCan } from "react-icons/fa6";
+
 
 import './platform.scss';
 
@@ -25,7 +27,7 @@ export default function Platform({ gameConsole }) {
     const location = useLocation();
     const url = location.pathname.split("/")[location.pathname.split("/").length-1];
 
-    useEffect(() => {
+    function populateGames() {
         try {
             setLoading(true);
 
@@ -40,11 +42,25 @@ export default function Platform({ gameConsole }) {
             setLoading(false);
             console.log(`<Platform /> useEffect error: ${err.message}`);
         }
+    }
+    useEffect(() => {
+        
+        populateGames()
 
-    }, [])
+    }, []);
 
     const handleShowInfo = (e) => {
         setShowInfo(!showInfo)
+    }
+
+    const deleteGame = (idx) => {
+
+        axios.delete(`${API}/${url}Games/${idx}`)
+        .then(() => {
+            console.log('deleted at index', idx)
+            // Is there a better way of doing this other than using populateGames() function to recall api or ?
+            populateGames()
+        }).catch(err => console.error(`Error deleting index ${idx}`, err))
     }
 
     const renderContent = () => {
@@ -62,7 +78,7 @@ export default function Platform({ gameConsole }) {
                         <LinkButton 
                             handleShowInfo={handleShowInfo}
                             url=''
-                            btnContainerStyle={{display: 'inline', gridColumnStart: '4'}}
+                            btnContainerStyle={{display: 'inline', gridColumnStart: '8', gridColumnEnd: '10'}}
                             btnStyle={{background: '#f9700e', color: 'black', boxShadow: '0 0 13px 3px #f9700e,', fontWeight: 'bold'}}
                             message='Show Info' 
                         />
@@ -70,10 +86,13 @@ export default function Platform({ gameConsole }) {
                         <LinkButton 
                             idx={idx}
                             url={"/edit-game"}
-                            btnContainerStyle={{display: 'inline', gridColumnStart: '5'}} 
+                            btnContainerStyle={{display: 'inline', gridColumnStart: '10', gridColumnEnd: '12'}} 
                             btnStyle={{background: '#2ed2e6', color: 'black', boxShadow: '0 0 13px 3px #2ed2e6', fontWeight: 'bold'}}
                             message='Edit Game' 
                         />
+                        <div className='trash-container' >
+                            <FaTrashCan className='trash-icon' size={'2.8em'} onClick={() => deleteGame(idx)}/>
+                        </div>
                     </li>
                     {showInfo && <GameDetails />}
                 </div>
