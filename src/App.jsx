@@ -7,6 +7,7 @@ import PC from './pages/pc/PC';
 import Nintendo from './pages/nintendo/Nintendo';
 import Sega from './pages/sega/Sega';
 import AddGame from './pages/add_game/AddGame';
+import EditGame from './pages/edit_game/EditGame';
 import NotFound from './pages/not_found/NotFound';
 
 import './App.scss';
@@ -28,6 +29,7 @@ function App() {
           <Route path="nintendo/*" element={<Nintendo />} />
           <Route path="sega/*" element={<Sega />} />
           <Route path="add-game" element={<AddGame />} />
+          <Route path="edit-game" element={<EditGame />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import { snesGames } from '../../models/snesGames'
+import axios from 'axios'
 
 import './game-form.scss'
 
+const API = process.env.REACT_APP_API_URL
 
 
-export default function GameForm() {
+
+export default function GameForm({ method, idx }) {
 
     const navigate = useNavigate()
 
     const [game, setGame] = useState({
         title: '',
-        region: '',
+        region: 'ntsc-j',
         year_released: '',
     })
 
@@ -22,14 +23,26 @@ export default function GameForm() {
         setGame({...game, [id]: value})
     }
 
-    function handleSubmit(e) {
+
+    function addGame(e) {
         e.preventDefault()
 
-        const newSnesGames = [...snesGames]
+        const newGame = game
 
-        newSnesGames.push(game)
-        console.log(newSnesGames)
-        navigate("/nintendo/snes", {state: { newSnesGames: newSnesGames } })
+        axios.post(`${API}/snesGames`, newGame)
+        .then(res => {
+            navigate("/nintendo/snes")
+        })
+    }
+
+    function editGame(e) {
+        e.preventDefault()
+
+        const updatedGame = game
+        axios.put(`${API}/snesGames/${idx}`, updatedGame)
+        .then(res => {
+            navigate("/nintendo/snes")
+        })
     }
     
 
@@ -37,7 +50,7 @@ export default function GameForm() {
 
     return (
         <>
-            <form className='game-form' onSubmit={handleSubmit}>
+            <form className='game-form' onSubmit={method === 'post' ? addGame : editGame}>
                 <label htmlFor="title">Title:</label>
                 <input type="text" placeholder='Title' id='title' value={game.title} onChange={handleChange} required />
                 
@@ -50,7 +63,7 @@ export default function GameForm() {
                 </select>
 
                 <label htmlFor="year_released">Year Released:</label>
-                <input type="text" placeholder='Year Released' id='year_released' value={game.year} onChange={handleChange} required />
+                <input type="text" placeholder='Year Released' id='year_released' value={game.year_released} onChange={handleChange} required />
                 <button type="submit">Submit</button>
             </form>
         </>

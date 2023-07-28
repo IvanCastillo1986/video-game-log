@@ -15,7 +15,7 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 // When Platform mounts, take browser url (snes), make api call to back-end /url route in useEffect
 // Then, display games list in component's <ul>
 
-// Link button to take user to this console's gameDetails component
+
 
 export default function Platform({ gameConsole }) {
     const [games, setGames] = useState([]);
@@ -24,16 +24,13 @@ export default function Platform({ gameConsole }) {
     
     const location = useLocation();
     const url = location.pathname.split("/")[location.pathname.split("/").length-1];
-    console.log(REACT_APP_API_KEY)
 
     useEffect(() => {
         try {
             setLoading(true);
 
             axios.get(`${API}/${url}Games`)
-            // axios.get(`https://api.mobygames.com/v1/games?api_key=moby_cXlw0A6wrJ8RoXWlWK0eKFRucbp`)
             .then(res => {
-                console.log(res)
                 setGames(res.data.snesGamesArray);
                 setLoading(false);
             }).catch(err => {
@@ -43,14 +40,6 @@ export default function Platform({ gameConsole }) {
             setLoading(false);
             console.log(`<Platform /> useEffect error: ${err.message}`);
         }
-
-        // try {
-        //     console.log('Game app api call')
-        //     axios.get(`https://api.mobygames.com/v1/games?api_key=${REACT_APP_API_KEY}`)
-        //     .then(res => console.log(res))
-        // } catch(err) {
-        //     console.log(`Game api call failed failed: ${err}`)
-        // }
 
     }, [])
 
@@ -62,12 +51,12 @@ export default function Platform({ gameConsole }) {
         if (loading) {
             return <Loading />
         } else {
-            return games.map(game => 
-                <div className='platform__game-wrapper'>
-                    <li className='platform__game' key={game.name}>
+            return games.map((game, idx) => 
+                <div className='platform__game-wrapper' key={idx}>
+                    <li className='platform__game'>
                     
                         <div className='platform__game-info'>
-                                Title: {game.name} | Region: {game.region} | Year Released: {game.date_released}
+                                Title: {game.title} | Region: {game.region} | Year Released: {game.year_released}
                         </div>
                         
                         <LinkButton 
@@ -79,10 +68,11 @@ export default function Platform({ gameConsole }) {
                         />
                         
                         <LinkButton 
-                            url={"/add-game"}
+                            idx={idx}
+                            url={"/edit-game"}
                             btnContainerStyle={{display: 'inline', gridColumnStart: '5'}} 
                             btnStyle={{background: '#2ed2e6', color: 'black', boxShadow: '0 0 13px 3px #2ed2e6', fontWeight: 'bold'}}
-                            message='Update Game' 
+                            message='Edit Game' 
                         />
                     </li>
                     {showInfo && <GameDetails />}
