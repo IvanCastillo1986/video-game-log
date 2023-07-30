@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 import './game-details.scss'
 
+const API = process.env.REACT_APP_API_URL
 
 // Will be a page. The url will not match the component heirarchy.
 // Will recieve game details from whichever game for whichever console. 
@@ -10,14 +12,27 @@ import './game-details.scss'
 // Ex:  nintendo/snes/contra3
 
 
-export default function GameDetails({ gameTitle }) {
+export default function GameDetails({ id }) {
+    const [game, setGame] = useState({})
 
+    const getGame = async (id) => {
+        await axios.get(`${API}/snesGames/${id}`)
+        .then(res => {
+            console.log(res)
+            setGame(res.data)
+        })
+    }
 
+    useEffect(() => {
+        getGame(id)
+    }, []);
 
 
     return (
         <div className='game-details'>
-            <div className='game-details__title'>Contra 3</div>
+            <div className='game-details__title'>Title: {game.title}</div>
+            <div className='game-details__region'>Region: {game.region}</div>
+            <div className='game-details__title'>Year Released: {game.year_released}</div>
             <div className='game-details__description'>Awesome friggin game!</div>
             <div className='game-details__developer'>Konami</div>
             <div className='game-details__publisher'>Konami</div>

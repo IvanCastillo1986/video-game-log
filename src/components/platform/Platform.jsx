@@ -33,7 +33,7 @@ export default function Platform({ gameConsole }) {
 
             axios.get(`${API}/${url}Games`)
             .then(res => {
-                setGames(res.data.snesGamesArray);
+                setGames(res.data);
                 setLoading(false);
             }).catch(err => {
                 console.error(`Error in video game log REACT APP ${err}`);
@@ -44,7 +44,6 @@ export default function Platform({ gameConsole }) {
         }
     }
     useEffect(() => {
-        
         populateGames()
 
     }, []);
@@ -94,7 +93,7 @@ export default function Platform({ gameConsole }) {
                             <FaTrashCan className='trash-icon' size={'2.8em'} onClick={() => deleteGame(idx)}/>
                         </div>
                     </li>
-                    {showInfo && <GameDetails />}
+                    {showInfo && <GameDetails id={game.id} />}
                 </div>
             )
         }

@@ -47,7 +47,6 @@ export default function GameForm({ idx }) {
     
 
 
-
     return (
         <>
             <form className='game-form' onSubmit={idx ? editGame : addGame}>
