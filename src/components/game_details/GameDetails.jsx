@@ -19,7 +19,6 @@ export default function GameDetails({ id }) {
 
             await axios.get(`${API}/snesGames/${id}`)
             .then(res => {
-                console.log(res)
                 setGame(res.data)
             })
         } catch(err) {

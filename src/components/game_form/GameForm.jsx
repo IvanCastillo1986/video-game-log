@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -8,7 +8,7 @@ const API = process.env.REACT_APP_API_URL
 
 
 
-export default function GameForm({ idx }) {
+export default function GameForm({ method, oldGame }) {
 
     const navigate = useNavigate()
 
@@ -16,7 +16,13 @@ export default function GameForm({ idx }) {
         title: '',
         region: 'ntsc-j',
         year_released: '',
+        id: null
     })
+
+    useEffect(() => {
+        // sets game to passed {game} prop from <Platform /> if Updating
+        setGame(oldGame)
+    }, [oldGame]);
 
     function handleChange(e) {
         const {id, value} = e.target
@@ -27,21 +33,31 @@ export default function GameForm({ idx }) {
     function addGame(e) {
         e.preventDefault()
 
-        const newGame = game
-
-        axios.post(`${API}/snesGames`, newGame)
-        .then(res => {
+        axios.post(`${API}/snesGames`, game)
+        .then(() => {
+            setGame({
+                title: '',
+                region: 'ntsc-j',
+                year_released: '',
+                id: game.id
+            })
             navigate("/nintendo/snes")
+        }).catch(err => {
+            console.log(`Error in GameForm addGame()`, err)
         })
     }
 
     function editGame(e) {
         e.preventDefault()
 
-        const updatedGame = game
-        axios.put(`${API}/snesGames/${idx}`, updatedGame)
-        .then(res => {
+        console.log(game)
+
+        axios.put(`${API}/snesGames/${game.id}`, game)
+        .then((res) => {
+            console.log(res)
             navigate("/nintendo/snes")
+        }).catch(err => {
+            console.log(`Error in GameForm editGame()`, err)
         })
     }
     
@@ -49,7 +65,7 @@ export default function GameForm({ idx }) {
 
     return (
         <>
-            <form className='game-form' onSubmit={idx ? editGame : addGame}>
+            <form className='game-form' onSubmit={method === 'post' ? addGame : editGame}>
                 <label htmlFor="title">Title:</label>
                 <input type="text" placeholder='Title' id='title' value={game.title} onChange={handleChange} required />
                 
@@ -62,7 +78,7 @@ export default function GameForm({ idx }) {
                 </select>
 
                 <label htmlFor="year_released">Year Released:</label>
-                <input type="text" placeholder='Year Released' id='year_released' value={game.year_released} onChange={handleChange} required />
+                <input type="text" placeholder='Year Released' id='year_released' value={game.year_released} onChange={handleChange} />
                 <button type="submit">Submit</button>
             </form>
         </>

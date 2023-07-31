@@ -7,13 +7,14 @@ import './edit-game.scss'
 
 export default function EditGame() {
 
+    // passing { game } state from LinkButton
     let { state } = useLocation()
 
     
     return (
         <div className='edit-game'>
             <h1>Edit your game</h1>
-            <GameForm idx={state.idx}/>
+            <GameForm method='put' oldGame={state.game} />
         </div>
     )
 }

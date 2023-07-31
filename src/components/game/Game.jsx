@@ -7,7 +7,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import './game.scss'
 
 
-export default function Game({ game, deleteGame, idx }) {
+export default function Game({ game, handleDelete }) {
 
     const [showInfo, setShowInfo] = useState(false);
 
@@ -17,7 +17,7 @@ export default function Game({ game, deleteGame, idx }) {
 
     return (
         <li className='game'>
-            <div className='game__game-wrapper' key={idx}>                    
+            <div className='game__game-wrapper'>                    
                 <div className='game__game-info'>
                         Title: {game.title} | Region: {game.region} | Year Released: {game.year_released}
                 </div>
@@ -31,19 +31,17 @@ export default function Game({ game, deleteGame, idx }) {
                 />
                 
                 <LinkButton 
-                    idx={idx}
+                    game={game}
                     url={"/edit-game"}
                     btnContainerStyle={{display: 'inline', gridColumnStart: '10', gridColumnEnd: '12'}} 
                     btnStyle={{background: '#2ed2e6', color: 'black', boxShadow: '0 0 13px 3px #2ed2e6', fontWeight: 'bold'}}
                     message='Edit Game' 
                 />
                 <div className='game__trash-container' >
-                    <FaTrashCan className='game__trash-icon' size={'2.8em'} onClick={() => deleteGame(idx)}/>
+                    <FaTrashCan className='game__trash-icon' size={'2.8em'} onClick={() => handleDelete(game.id)}/>
                 </div>
             </div>
-            {showInfo &&
-            <GameDetails id={game.id} />
-            }
+            { showInfo && <GameDetails id={game.id} /> }
         </li>
     )
 }

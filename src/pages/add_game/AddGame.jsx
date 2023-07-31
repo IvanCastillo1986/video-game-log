@@ -13,7 +13,7 @@ export default function AddVG() {
             <h1>Add a new game</h1>
 
             {/* title, region, year_released */}
-            <GameForm />
+            <GameForm method='post' />
         </div>
     )
 }

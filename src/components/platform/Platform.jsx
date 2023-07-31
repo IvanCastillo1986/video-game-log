@@ -44,26 +44,25 @@ export default function Platform({ gameConsole }) {
     }
     useEffect(() => {
         populateGames()
-
     }, []);
 
 
-    const deleteGame = (idx) => {
+    const handleDelete = (id) => {
 
-        axios.delete(`${API}/${url}Games/${idx}`)
+        axios.delete(`${API}/${url}Games/${id}`)
         .then(() => {
-            console.log('deleted at index', idx)
+            console.log('deleted at index', id)
             // Is there a better way of doing this other than using populateGames() function to recall api or ?
             populateGames()
-        }).catch(err => console.error(`Error deleting index ${idx}`, err))
+        }).catch(err => console.error(`Error deleting game at index ${id}:`, err))
     }
 
     const renderContent = () => {
         if (loading) {
             return <Loading />
         } else {
-            return games.map((game, idx) => 
-                <Game game={game} idx={idx} deleteGame={deleteGame} />
+            return games.map((game) => 
+                <Game game={game} key={game.id} handleDelete={handleDelete} />
             )
         }
     }
