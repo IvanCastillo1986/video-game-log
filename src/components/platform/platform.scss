@@ -7,35 +7,8 @@
         text-align: left;
         margin: 0 7%;
     }
-    li {
-        display: grid;
-        align-items: center;
-        justify-content: center;
-        grid-template-columns: repeat(12, 1fr);
-    }
-    &__game {
-        padding: 35px 0 35px 0;
-        display: grid;
-    }
-    &__game-info {
-        grid-column-start: 1;
-        grid-column-end: 8;
-    }
     a {
         text-decoration: none;
     }
-    button {
-        text-decoration: none;
-    }
-    .trash-container {
-        display: flex;
-        justify-content: center;
-    }
-    .trash-icon {
-        color: #f706cf;
-    }
-    .trash-icon:hover {
-        cursor: pointer;
-    }
-
+    
 }

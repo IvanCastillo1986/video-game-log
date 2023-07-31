@@ -3,10 +3,9 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import Loading from '../loading/Loading';
+import Game from '../game/Game';
 import GameDetails from '../game_details/GameDetails';
 import LinkButton from '../../layout/link_button/LinkButton';
-import { FaTrashCan } from "react-icons/fa6";
-
 
 import './platform.scss';
 
@@ -48,9 +47,6 @@ export default function Platform({ gameConsole }) {
 
     }, []);
 
-    const handleShowInfo = (e) => {
-        setShowInfo(!showInfo)
-    }
 
     const deleteGame = (idx) => {
 
@@ -67,34 +63,7 @@ export default function Platform({ gameConsole }) {
             return <Loading />
         } else {
             return games.map((game, idx) => 
-                <div className='platform__game-wrapper' key={idx}>
-                    <li className='platform__game'>
-                    
-                        <div className='platform__game-info'>
-                                Title: {game.title} | Region: {game.region} | Year Released: {game.year_released}
-                        </div>
-                        
-                        <LinkButton 
-                            handleShowInfo={handleShowInfo}
-                            url=''
-                            btnContainerStyle={{display: 'inline', gridColumnStart: '8', gridColumnEnd: '10'}}
-                            btnStyle={{background: '#f9700e', color: 'black', boxShadow: '0 0 13px 3px #f9700e,', fontWeight: 'bold'}}
-                            message='Show Info' 
-                        />
-                        
-                        <LinkButton 
-                            idx={idx}
-                            url={"/edit-game"}
-                            btnContainerStyle={{display: 'inline', gridColumnStart: '10', gridColumnEnd: '12'}} 
-                            btnStyle={{background: '#2ed2e6', color: 'black', boxShadow: '0 0 13px 3px #2ed2e6', fontWeight: 'bold'}}
-                            message='Edit Game' 
-                        />
-                        <div className='trash-container' >
-                            <FaTrashCan className='trash-icon' size={'2.8em'} onClick={() => deleteGame(idx)}/>
-                        </div>
-                    </li>
-                    {showInfo && <GameDetails id={game.id} />}
-                </div>
+                <Game game={game} idx={idx} deleteGame={deleteGame} />
             )
         }
     }

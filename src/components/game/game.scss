@@ -1,0 +1,31 @@
+.game {
+    padding: 35px 0 35px 0;
+    
+    &__game-wrapper {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    &__game-info {
+        grid-column-start: 1;
+        grid-column-end: 8;
+    }
+    a {
+        text-decoration: none;
+    }
+    button {
+        text-decoration: none;
+    }
+    &__trash-container {
+        display: flex;
+        justify-content: center;
+    }
+    &__trash-icon {
+        color: #f706cf;
+        :hover {
+            cursor: pointer;
+        }
+    }
+}

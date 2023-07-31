@@ -9,18 +9,22 @@ const API = process.env.REACT_APP_API_URL
 // Will recieve game details from whichever game for whichever console. 
 // Will display it with even more info
 // Will make a call to a video games API (probably wikipedia REST api)
-// Ex:  nintendo/snes/contra3
 
 
 export default function GameDetails({ id }) {
     const [game, setGame] = useState({})
 
     const getGame = async (id) => {
-        await axios.get(`${API}/snesGames/${id}`)
-        .then(res => {
-            console.log(res)
-            setGame(res.data)
-        })
+        try {
+
+            await axios.get(`${API}/snesGames/${id}`)
+            .then(res => {
+                console.log(res)
+                setGame(res.data)
+            })
+        } catch(err) {
+            console.log('Error in <GameDetails />:', err)
+        }
     }
 
     useEffect(() => {
@@ -32,16 +36,16 @@ export default function GameDetails({ id }) {
         <div className='game-details'>
             <div className='game-details__title'>Title: {game.title}</div>
             <div className='game-details__region'>Region: {game.region}</div>
-            <div className='game-details__title'>Year Released: {game.year_released}</div>
-            <div className='game-details__description'>Awesome friggin game!</div>
-            <div className='game-details__developer'>Konami</div>
-            <div className='game-details__publisher'>Konami</div>
-            <div className='game-details__director'>Nobuya Nakazato</div>
-            <div className='game-details__producer'>Kazumi Kitaue</div>
-            <div className='game-details__artist'>Nobuya Nakazato</div>
-            <div className='game-details__composer'>Miki Higashino</div>
-            <div className='game-details__genre'>Run and gun</div>
-            <div className='game-details__platforms'>Single-player, cooperative</div>
+            <div className='game-details__year'>Year Released: {game.year_released}</div>
+            <div className='game-details__description'>Description: Awesome friggin game!</div>
+            <div className='game-details__developer'>Developer: Konami</div>
+            <div className='game-details__publisher'>Publisher: Konami</div>
+            <div className='game-details__director'>Director: Nobuya Nakazato</div>
+            <div className='game-details__producer'>Producer: Kazumi Kitaue</div>
+            <div className='game-details__artist'>Artist: Nobuya Nakazato</div>
+            <div className='game-details__composer'>Composer: Miki Higashino</div>
+            <div className='game-details__genre'>Genre: Run and gun</div>
+            <div className='game-details__platforms'>Platforms: Single-player, cooperative</div>
         </div>
     )
 }
