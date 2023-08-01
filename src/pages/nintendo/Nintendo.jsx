@@ -1,5 +1,5 @@
-import React from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 import Platform from '../../components/platform/Platform'
 import ChooseConsole from '../../components/choose_console/ChooseConsole'
@@ -8,25 +8,32 @@ import ChooseConsole from '../../components/choose_console/ChooseConsole'
 import './nintendo.scss'
 
 
+const gameConsoleLinks = [
+    {
+        name: 'Nintendo Entertainment System (NES)',
+        url: 'nes'
+    },
+    {
+        name: 'Super Nintendo (SNES)',
+        url: 'snes'
+    },
+    {
+        name: 'Game Boy',
+        url: 'game-boy'
+    },
+]
+
 
 export default function Nintendo() {
-    
-    const {state} = useLocation()
 
-    const gameConsoleLinks = [
-        {
-            name: 'Nintendo Entertainment System (NES)',
-            url: 'nes'
-        },
-        {
-            name: 'Super Nintendo (SNES)',
-            url: 'snes'
-        },
-        {
-            name: 'Game Boy',
-            url: 'game-boy'
-        },
-    ]
+    const [gameConsole, setGameConsole] = useState('')
+    const [gameConsoleUrl, setGameConsoleUrl] = useState('')
+
+
+    const handleClick = (name, url) => {
+        setGameConsole(name)
+        setGameConsoleUrl(url)
+    }
 
 
     return (
@@ -35,11 +42,13 @@ export default function Nintendo() {
 
             <Routes>
                 <Route index 
-                    element={<ChooseConsole gameConsoleLinks={gameConsoleLinks} /> } 
+                    element={
+                    <ChooseConsole gameConsoleLinks={gameConsoleLinks} handleClick={handleClick} /> 
+                    } 
                 />
                 
-                <Route path="snes/*" 
-                    element={<Platform gameConsole={"Super Nintendo Entertainment System"} />}
+                <Route path={`${gameConsoleUrl}/*`} 
+                    element={<Platform gameConsole={gameConsole} gameConsoleUrl={gameConsoleUrl}/>}
                 />
             </Routes>
         </div>

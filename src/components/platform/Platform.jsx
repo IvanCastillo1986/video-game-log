@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import Loading from '../loading/Loading';
 import Game from '../game/Game';
-import GameDetails from '../game_details/GameDetails';
 import LinkButton from '../../layout/link_button/LinkButton';
 
 import './platform.scss';
@@ -18,19 +16,16 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 
 
-export default function Platform({ gameConsole }) {
+export default function Platform({ gameConsole, gameConsoleUrl }) {
     const [games, setGames] = useState([]);
-    const [showInfo, setShowInfo] = useState(false);
     const [loading, setLoading] = useState(false);
     
-    const location = useLocation();
-    const url = location.pathname.split("/")[location.pathname.split("/").length-1];
 
     function populateGames() {
         try {
             setLoading(true);
 
-            axios.get(`${API}/${url}Games`)
+            axios.get(`${API}/${gameConsoleUrl}Games`)
             .then(res => {
                 setGames(res.data);
                 setLoading(false);
@@ -49,7 +44,7 @@ export default function Platform({ gameConsole }) {
 
     const handleDelete = (id) => {
 
-        axios.delete(`${API}/${url}Games/${id}`)
+        axios.delete(`${API}/${gameConsoleUrl}Games/${id}`)
         .then(() => {
             console.log('deleted at index', id)
             // Is there a better way of doing this other than using populateGames() function to recall api or ?

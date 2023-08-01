@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import './chooseConsole.scss'
 
 
 
-export default function ChooseConsole({ gameConsoleLinks }) {
+export default function ChooseConsole({ gameConsoleLinks, handleClick }) {
 
+    
     
     return (
         <div className='choose-console'>
@@ -14,7 +15,9 @@ export default function ChooseConsole({ gameConsoleLinks }) {
 
             <ul>
                 {gameConsoleLinks.map(gameConsole => 
-                    <li key={gameConsole.name}> <Link to={gameConsole.url}>{gameConsole.name}</Link> </li>
+                    <li key={gameConsole.name}> 
+                        <Link to={gameConsole.url} onClick={() => handleClick(gameConsole.name, gameConsole.url)}>{gameConsole.name}</Link>
+                    </li>
                 )}
             </ul>
         </div>

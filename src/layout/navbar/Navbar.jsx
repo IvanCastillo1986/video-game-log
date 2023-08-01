@@ -8,9 +8,11 @@ import './navbar.scss'
 export default function Navbar() {
 
     const stopAnimation = (e) => {
-        console.log(e.target.style.animationPlayState === 'paused')
+        // How to get this working?
+        // console.log(e.target.style.animationPlayState === 'paused')
         e.target.style.animationPlayState = 'paused'
     }
+    
     
     return (
         <>
