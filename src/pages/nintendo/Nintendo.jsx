@@ -26,6 +26,7 @@ const gameConsoleLinks = [
 
 export default function Nintendo() {
 
+    const [consolePicked, setConsolePicked] = useState(false)
     const [gameConsole, setGameConsole] = useState('')
     const [gameConsoleUrl, setGameConsoleUrl] = useState('')
 
@@ -33,14 +34,23 @@ export default function Nintendo() {
     const handleClick = (name, url) => {
         setGameConsole(name)
         setGameConsoleUrl(url)
+        setConsolePicked(true)
     }
 
+    // EVERYTIME I REFRESH OR GO BACK ONTO SNES COMPONENT, I LOSE THE gameConsoleUrl PROPS VALUE
+    // HOW TO FIX THIS
 
     return (
         <div className='nintendo'>
             <h1>Nintendo</h1>
 
-            <Routes>
+            { !consolePicked 
+            ?
+            <ChooseConsole gameConsoleLinks={gameConsoleLinks} handleClick={handleClick} />
+            :
+            <Platform gameConsole={gameConsole} gameConsoleUrl={gameConsoleUrl}/> }
+
+            {/* <Routes>
                 <Route index 
                     element={
                     <ChooseConsole gameConsoleLinks={gameConsoleLinks} handleClick={handleClick} /> 
@@ -50,7 +60,7 @@ export default function Nintendo() {
                 <Route path={`${gameConsoleUrl}/*`} 
                     element={<Platform gameConsole={gameConsole} gameConsoleUrl={gameConsoleUrl}/>}
                 />
-            </Routes>
+            </Routes> */}
         </div>
     )
 }

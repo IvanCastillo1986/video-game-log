@@ -21,12 +21,16 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     const [loading, setLoading] = useState(false);
     
 
+    // EVERYTIME I REFRESH OR GO BACK ONTO SNES COMPONENT, I LOSE THE gameConsoleUrl PROPS VALUE
+    // HOW TO FIX THIS
     function populateGames() {
         try {
             setLoading(true);
-
+            console.log('try block')
+            console.log('gameConsoleUrl', gameConsoleUrl)
             axios.get(`${API}/${gameConsoleUrl}Games`)
             .then(res => {
+                console.log('calling snesGames')
                 setGames(res.data);
                 setLoading(false);
             }).catch(err => {
@@ -46,7 +50,6 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
 
         axios.delete(`${API}/${gameConsoleUrl}Games/${id}`)
         .then(() => {
-            console.log('deleted at index', id)
             // Is there a better way of doing this other than using populateGames() function to recall api or ?
             populateGames()
         }).catch(err => console.error(`Error deleting game at index ${id}:`, err))

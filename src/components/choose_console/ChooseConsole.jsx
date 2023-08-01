@@ -16,7 +16,8 @@ export default function ChooseConsole({ gameConsoleLinks, handleClick }) {
             <ul>
                 {gameConsoleLinks.map(gameConsole => 
                     <li key={gameConsole.name}> 
-                        <Link to={gameConsole.url} onClick={() => handleClick(gameConsole.name, gameConsole.url)}>{gameConsole.name}</Link>
+                        {/* <Link to={gameConsole.url} onClick={() => handleClick(gameConsole.name, gameConsole.url)}>{gameConsole.name}</Link> */}
+                        <p onClick={() => handleClick(gameConsole.name, gameConsole.url)}>{gameConsole.name}</p>
                     </li>
                 )}
             </ul>
