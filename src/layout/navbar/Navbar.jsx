@@ -13,7 +13,9 @@ export default function Navbar() {
         e.target.style.animationPlayState = 'paused'
     }
     
-    
+    // Will take to ChooseConsole page  /chooseConsole
+    // ChooseConsole will display links only for the associated company's consoles
+
     return (
         <>
             <nav className='navbar'>
@@ -25,8 +27,8 @@ export default function Navbar() {
                     </div>
                     <div className='navbar__links'>
                         <li><Link to="pc">PC</Link></li>
-                        <li><Link to="nintendo">Nintendo</Link></li>
-                        <li><Link to="sega">Sega</Link></li>
+                        <li><Link to="choose-console" state={{company: 'nintendo'}}>Nintendo</Link></li>
+                        <li><Link to="choose-console" state={{company: 'sega'}}>Sega</Link></li>
                     </div>
                 </ul>
 

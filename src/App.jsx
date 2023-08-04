@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './layout/navbar/Navbar';
 import Home from './pages/home/Home';
+import ChooseConsole from './components/choose_console/ChooseConsole';
 import PC from './pages/pc/PC';
 import Nintendo from './pages/nintendo/Nintendo';
 import Sega from './pages/sega/Sega';
@@ -25,6 +26,7 @@ function App() {
         {/* Our Route paths are succeeded by an asterisk because we have deeper nested Routes */}
         <Routes>
           <Route index element={<Home />} />
+          <Route path="choose-console" element={<ChooseConsole />} />
           <Route path="pc/*" element={<PC />} />
           <Route path="nintendo/*" element={<Nintendo />} />
           <Route path="sega/*" element={<Sega />} />

@@ -26,11 +26,9 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     function populateGames() {
         try {
             setLoading(true);
-            console.log('try block')
-            console.log('gameConsoleUrl', gameConsoleUrl)
+
             axios.get(`${API}/${gameConsoleUrl}Games`)
             .then(res => {
-                console.log('calling snesGames')
                 setGames(res.data);
                 setLoading(false);
             }).catch(err => {
@@ -41,9 +39,11 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
             console.log(`<Platform /> useEffect error: ${err.message}`);
         }
     }
+
     useEffect(() => {
-        populateGames()
+        populateGames();
     }, []);
+
 
 
     const handleDelete = (id) => {
@@ -74,7 +74,9 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
 
             <h2>Games</h2>
             <ul>
-                {renderContent()}
+                {games &&
+                renderContent()
+                }
             </ul>
         </div>
     )
