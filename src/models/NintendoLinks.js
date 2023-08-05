@@ -11,6 +11,10 @@ const NintendoConsoleLinks = [
         name: 'Game Boy',
         url: 'game-boy'
     },
+    // {
+    //     name: 'Nintendo 64',
+    //     url: 'nintendo-64'
+    // },
 ];
 
 module.exports = {NintendoConsoleLinks};

@@ -11,6 +11,10 @@ const SegaConsoleLinks = [
         name: 'Sega Saturn',
         url: 'sega-saturn'
     },
+    // {
+    //     name: 'Dreamcast',
+    //     url: 'dreamcast'
+    // }
 ];
 
 module.exports = {SegaConsoleLinks};

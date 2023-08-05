@@ -4,6 +4,8 @@ import axios from 'axios';
 import Loading from '../loading/Loading';
 import Game from '../game/Game';
 import LinkButton from '../../layout/link_button/LinkButton';
+import { convertPlatformToId } from '../../helper/convertPlatformToId.js'
+
 
 import './platform.scss';
 
@@ -19,16 +21,17 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 export default function Platform({ gameConsole, gameConsoleUrl }) {
     const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(false);
-    
 
-    // EVERYTIME I REFRESH OR GO BACK ONTO SNES COMPONENT, I LOSE THE gameConsoleUrl PROPS VALUE
-    // HOW TO FIX THIS
+    const platformId = convertPlatformToId(gameConsoleUrl);
+    console.log(platformId)
+    
     function populateGames() {
         try {
             setLoading(true);
 
-            axios.get(`${API}/${gameConsoleUrl}Games`)
+            axios.get(`${API}/games/query?platformId=${platformId}`) // /games?platformId=3
             .then(res => {
+                console.log(res)
                 setGames(res.data);
                 setLoading(false);
             }).catch(err => {

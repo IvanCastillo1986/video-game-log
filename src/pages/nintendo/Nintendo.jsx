@@ -10,16 +10,13 @@ import './nintendo.scss'
 export default function Nintendo() {
 
     const location = useLocation()
-    
 
-    // EVERYTIME I REFRESH OR GO BACK ONTO SNES COMPONENT, I LOSE THE gameConsoleUrl PROPS VALUE
-    // HOW TO FIX THIS
 
     return (
         <div className='nintendo'>
             <h1>Nintendo</h1>
 
-            <Platform gameConsole={location.state.gameConsole} gameConsoleUrl={location.state.gameConsoleUrl}/> 
+            <Platform gameConsole={location.state.gameConsole} gameConsoleUrl={location.state.gameConsoleUrl} /> 
 
         </div>
     )

@@ -32,7 +32,9 @@ export default function ChooseConsole() {
                     <li key={gameConsole.name}> 
                         <Link 
                             to={`/${company}/${gameConsole.url}`} 
-                            state={{ gameConsole: gameConsole.name, gameConsoleUrl: gameConsole.url }}
+                            state={{ 
+                                gameConsole: gameConsole.name, gameConsoleUrl: gameConsole.url, 
+                            }}
                         >
                             {gameConsole.name}
                         </Link>
