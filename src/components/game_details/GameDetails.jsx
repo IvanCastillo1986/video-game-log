@@ -17,7 +17,7 @@ export default function GameDetails({ id }) {
     const getGame = async (id) => {
         try {
 
-            await axios.get(`${API}/snesGames/${id}`)
+            await axios.get(`${API}/games/${id}`)
             .then(res => {
                 setGame(res.data)
             })

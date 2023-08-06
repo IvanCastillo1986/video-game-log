@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 import GameDetails from '../game_details/GameDetails';
 import LinkButton from '../../layout/link_button/LinkButton';
@@ -15,9 +15,10 @@ export default function Game({ game, handleDelete }) {
         setShowInfo(!showInfo)
     }
 
+
     return (
         <li className='game'>
-            <div className='game__game-wrapper'>                    
+            <div className='game__game-wrapper'>
                 <div className='game__game-info'>
                         Title: {game.title} | Region: {game.region} | Year Released: {game.year_released}
                 </div>

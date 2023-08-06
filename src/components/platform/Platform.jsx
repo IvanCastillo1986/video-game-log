@@ -23,7 +23,6 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     const [loading, setLoading] = useState(false);
 
     const platformId = convertPlatformToId(gameConsoleUrl);
-    console.log(platformId)
     
     function populateGames() {
         try {
@@ -31,7 +30,6 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
 
             axios.get(`${API}/games/query?platformId=${platformId}`) // /games?platformId=3
             .then(res => {
-                console.log(res)
                 setGames(res.data);
                 setLoading(false);
             }).catch(err => {
@@ -48,10 +46,9 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     }, []);
 
 
-
     const handleDelete = (id) => {
 
-        axios.delete(`${API}/${gameConsoleUrl}Games/${id}`)
+        axios.delete(`${API}/games/${id}`)
         .then(() => {
             // Is there a better way of doing this other than using populateGames() function to recall api or ?
             populateGames()
@@ -73,7 +70,12 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     return (
         <div className='platform'>
             <h2>{gameConsole}</h2>
-            <div><LinkButton url="/add-game" message="Add Game" btnStyle={{animation: 'glimmer 4s infinite'}}></LinkButton></div>
+            
+            <LinkButton 
+                url="/add-game" message="Add Game" 
+                btnStyle={{animation: 'glimmer 4s infinite'}} 
+                platformId={platformId}
+            />
 
             <h2>Games</h2>
             <ul>

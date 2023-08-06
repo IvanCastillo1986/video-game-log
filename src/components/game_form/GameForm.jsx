@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
+
 
 import './game-form.scss'
 
@@ -9,19 +10,24 @@ const API = process.env.REACT_APP_API_URL
 
 
 export default function GameForm({ method, oldGame }) {
-
+    
     const navigate = useNavigate()
+    const location = useLocation()
+    const { platformId } = location.state
+    console.log(platformId)
 
     const [game, setGame] = useState({
         title: '',
         region: 'ntsc-j',
         year_released: '',
-        id: null
+        platform_id: platformId
     })
 
     useEffect(() => {
         // sets game to passed {game} prop from <Platform /> if Updating
-        setGame(oldGame)
+        if (oldGame) {
+            setGame(oldGame)
+        }
     }, [oldGame]);
 
     function handleChange(e) {
@@ -33,18 +39,25 @@ export default function GameForm({ method, oldGame }) {
     function addGame(e) {
         e.preventDefault()
 
-        axios.post(`${API}/snesGames`, game)
-        .then(() => {
-            setGame({
-                title: '',
-                region: 'ntsc-j',
-                year_released: '',
-                id: game.id
+        try {
+
+            axios.post(`${API}/games`, game)
+            .then((res) => {
+                console.log(res)
+                setGame({
+                    title: '',
+                    region: 'ntsc-j',
+                    year_released: '',
+                    platform_id: null
+                })
+                navigate(-1)
+            }).catch(err => {
+                console.log(`Error in GameForm addGame()`, err)
             })
-            navigate("/nintendo/snes")
-        }).catch(err => {
-            console.log(`Error in GameForm addGame()`, err)
-        })
+
+        } catch (err) {
+            console.log('Error adding game:', err)
+        }
     }
 
     function editGame(e) {
@@ -52,10 +65,10 @@ export default function GameForm({ method, oldGame }) {
 
         console.log(game)
 
-        axios.put(`${API}/snesGames/${game.id}`, game)
+        axios.put(`${API}/games/${game.id}`, game)
         .then((res) => {
             console.log(res)
-            navigate("/nintendo/snes")
+            navigate(-1)
         }).catch(err => {
             console.log(`Error in GameForm editGame()`, err)
         })

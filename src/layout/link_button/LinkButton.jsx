@@ -5,13 +5,21 @@ import './link-button.scss'
 
 
 
-export default function LinkButton({ url, message, btnStyle, btnContainerStyle, handleShowInfo, game }) {
+export default function LinkButton({ 
+    url, message, btnStyle, btnContainerStyle, handleShowInfo, game, platformId 
+}) {
 
     
     return (
         <div className='link-btn-container' style={btnContainerStyle}>
             { url ?
-                <Link className='link-btn-container__button' to={url} style={btnStyle} state={{game: game}}> {message} </Link>
+                <Link 
+                    className='link-btn-container__button' 
+                    to={url} style={btnStyle} 
+                    state={{ game: game, platformId: platformId }}
+                > 
+                    {message} 
+                </Link>
                 :
                 <button onClick={handleShowInfo} className='link-btn-container__button' >{message}</button>
             }
