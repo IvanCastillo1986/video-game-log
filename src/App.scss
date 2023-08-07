@@ -1,17 +1,24 @@
 @import './design-utils/colors';
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap');
 
 
 .App {
   text-align: center;
   color: white;
   background: $nighttime;
-
+  font-family: "Roboto";
+  font-weight: 300;
+  
   h1 {
     margin-top: 0;
     color: $neon-orange;
     font-family: 'Streamster';
     font-size: 3em;
+  }
+  
+  h3 {
+    font-weight: 900;
   }
 
   main {
