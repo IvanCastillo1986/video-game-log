@@ -5,10 +5,7 @@ import { auth } from '../../firebase'
 import "./sign-in.scss"
 
 
-
 export default function SignIn() {
-
-    console.log(auth)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

@@ -28,7 +28,7 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
         try {
             setLoading(true);
 
-            axios.get(`${API}/games/query?platformId=${platformId}`) // /games?platformId=3
+            axios.get(`${API}/games?platformId=${platformId}`) // /games?platformId=3
             .then(res => {
                 setGames(res.data);
                 setLoading(false);

@@ -2,6 +2,7 @@ import React from 'react'
 
 import SignIn from '../../components/auth/SignIn'
 import SignUp from '../../components/auth/SignUp'
+import AuthDetails from '../../components/auth/AuthDetails'
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
 
             <SignIn />
             <SignUp />
+            <AuthDetails />
         </div>
     )
 }

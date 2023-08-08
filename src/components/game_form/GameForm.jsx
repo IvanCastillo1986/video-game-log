@@ -14,13 +14,13 @@ export default function GameForm({ method, oldGame }) {
     const navigate = useNavigate()
     const location = useLocation()
     const { platformId } = location.state
-    console.log(platformId)
 
     const [game, setGame] = useState({
         title: '',
         region: 'ntsc-j',
         year_released: '',
-        platform_id: platformId
+        platform_id: platformId,
+
     })
 
     useEffect(() => {
@@ -42,13 +42,13 @@ export default function GameForm({ method, oldGame }) {
         try {
 
             axios.post(`${API}/games`, game)
-            .then((res) => {
-                console.log(res)
+            .then(() => {
                 setGame({
                     title: '',
                     region: 'ntsc-j',
                     year_released: '',
-                    platform_id: null
+                    platform_id: null,
+
                 })
                 navigate(-1)
             }).catch(err => {
@@ -63,11 +63,8 @@ export default function GameForm({ method, oldGame }) {
     function editGame(e) {
         e.preventDefault()
 
-        console.log(game)
-
         axios.put(`${API}/games/${game.id}`, game)
-        .then((res) => {
-            console.log(res)
+        .then(() => {
             navigate(-1)
         }).catch(err => {
             console.log(`Error in GameForm editGame()`, err)
@@ -83,7 +80,7 @@ export default function GameForm({ method, oldGame }) {
                 <input type="text" placeholder='Title' id='title' value={game.title} onChange={handleChange} required />
                 
                 <label htmlFor="region">Region:</label>
-                <select id="region" value={game.region} onChange={handleChange}>
+                <select id="region" value={game.region} onChange={handleChange} required>
                     <option value="ntsc-j">NTSC-J (Japan and Asia)</option>
                     <option value="ntsc-u">NTSC-U (North America, South America)</option>
                     <option value="pal">PAL (Europe, Oceania, Middle East, India, South Africa)</option>
@@ -91,7 +88,7 @@ export default function GameForm({ method, oldGame }) {
                 </select>
 
                 <label htmlFor="year_released">Year Released:</label>
-                <input type="text" placeholder='Year Released' id='year_released' value={game.year_released} onChange={handleChange} />
+                <input type="text" placeholder='Year Released' id='year_released' value={game.year_released} onChange={handleChange} required />
                 <button type="submit">Submit</button>
             </form>
         </>
