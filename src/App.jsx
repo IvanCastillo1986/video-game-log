@@ -11,6 +11,7 @@ import AddGame from './pages/add_game/AddGame';
 import EditGame from './pages/edit_game/EditGame';
 import NotFound from './pages/not_found/NotFound';
 
+
 import './App.scss';
 
 export const UserContext = createContext();
@@ -48,6 +49,5 @@ function App() {
   );
 };
 
-// export const useMyContext = () => {}
 
 export default App;

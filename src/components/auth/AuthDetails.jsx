@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
-
 import { UserContext } from '../../App'
+
+import LinkButton from '../../layout/link_button/LinkButton'
 
 
 export default function AuthDetails() {
@@ -12,7 +13,7 @@ export default function AuthDetails() {
 
     // console.log(authUser)
     const {user, setUser} = useContext(UserContext)
-    console.log(user)
+    // console.log(user)
 
     // everytime the authUser state changes, the useEffect will trigger onAuthStateChanged()
     useEffect(() => {
@@ -36,7 +37,10 @@ export default function AuthDetails() {
     // WRITE HANDLER FUNCTION
     function handleSignOut() {
         signOut(auth)
-        .then(() => console.log('Signed out successfully'))
+        .then(() => {
+            console.log('Signed out successfully')
+            setUser({})
+        })
         .catch(err => console.log(`Error signing out ${err}`))
     }
 
@@ -48,7 +52,7 @@ export default function AuthDetails() {
             { authUser ?
             <>
                 <p>Signed in as {authUser.email}</p>
-                <button onClick={handleSignOut}>Sign Out</button>
+                <LinkButton handleShowInfo={handleSignOut} message={'Sign Out'}></LinkButton>
             </>
             :
             <p>Signed out</p>

@@ -24,7 +24,12 @@
         cursor: pointer;
         display: flex;
         justify-content: center;
+
     }
+    &__button:hover {
+        background-color: $light-night;
+    }
+    
 
     @keyframes glimmer {
         0% {background: #0d0221;}

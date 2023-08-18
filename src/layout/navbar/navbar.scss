@@ -6,14 +6,15 @@
     height: 35vh;
     margin: 0;
     font-family: 'Orbitron', sans-serif;
-    z-index: -1;
+    z-index: 1;
     overflow: hidden;
+    position: relative;
     
     ul {
         margin: 0;
         padding: 0;
-        display: flex;
         height: 40px;
+        display: flex;
         align-items: center;
         justify-content: space-between;
     }
@@ -56,6 +57,14 @@
         overflow: hidden;
         z-index: -99;
         box-shadow: inset 0 0 10px 1px #f9700e, 0 0 20px 1px #f9700e;
+    }
+
+    &__email {
+        font-size: .7em;
+        color: $nighttime;
+        position: absolute;
+        bottom: -4%;
+        right: 0;
     }
 
     // this pauses animation on hover

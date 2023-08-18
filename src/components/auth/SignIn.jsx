@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
+import LinkButton from '../../layout/link_button/LinkButton'
 
 import "./sign-in.scss"
 
@@ -29,7 +30,7 @@ export default function SignIn() {
             <form onSubmit={signIn}>
                 <input type="email" placeholder='E-mail' value={email} onChange={e => setEmail(e.target.value)} />
                 <input type="password" placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} />
-                <button type='submit'>Sign In</button>
+                <LinkButton type="submit" message='Sign In'>Sign In</LinkButton>
             </form>
         </div>
     )

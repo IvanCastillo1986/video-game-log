@@ -4,6 +4,8 @@ import SignIn from '../../components/auth/SignIn'
 import SignUp from '../../components/auth/SignUp'
 import AuthDetails from '../../components/auth/AuthDetails'
 
+import './home.scss'
+
 
 export default function Home() {
 
