@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
 
+import { UserContext } from '../../App'
 
 
 export default function AuthDetails() {
 
     const [authUser, setAuthUser] = useState(null)
+
+
+    // console.log(authUser)
+    const {user, setUser} = useContext(UserContext)
+    console.log(user)
 
     // everytime the authUser state changes, the useEffect will trigger onAuthStateChanged()
     useEffect(() => {
@@ -14,8 +20,9 @@ export default function AuthDetails() {
         const listen = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setAuthUser(user)
+                setUser(user)
             } else {
-                setAuthUser(null)
+                setAuthUser(null) 
             }
         })
 

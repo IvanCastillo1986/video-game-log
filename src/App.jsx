@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './layout/navbar/Navbar';
@@ -13,32 +13,41 @@ import NotFound from './pages/not_found/NotFound';
 
 import './App.scss';
 
+export const UserContext = createContext();
+
+
+
 
 function App() {
 
+  const [user, setUser] = useState({});
+
   
   return (
-
     <div className="App">
-      <Navbar />
+          <UserContext.Provider value={{user, setUser}}>
+          <Navbar />
 
-      <main>
-        {/* Our Route paths are succeeded by an asterisk because we have deeper nested Routes */}
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="choose-console" element={<ChooseConsole />} />
-          <Route path="pc/*" element={<PC />} />
-          <Route path="nintendo/*" element={<Nintendo />} />
-          <Route path="sega/*" element={<Sega />} />
-          <Route path="add-game" element={<AddGame />} />
-          <Route path="edit-game" element={<EditGame />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+          <main>
+            {/* Our Route paths are succeeded by an asterisk because we have deeper nested Routes */}
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="choose-console" element={<ChooseConsole />} />
+              <Route path="pc/*" element={<PC />} />
+              <Route path="nintendo/*" element={<Nintendo />} />
+              <Route path="sega/*" element={<Sega />} />
+              <Route path="add-game" element={<AddGame />} />
+              <Route path="edit-game" element={<EditGame />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
 
-    </div>
+          </UserContext.Provider>
+      </div>
 
   );
-}
+};
+
+// export const useMyContext = () => {}
 
 export default App;

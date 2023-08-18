@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
 
@@ -14,9 +14,20 @@ export default function SignUp() {
         e.preventDefault()
 
         createUserWithEmailAndPassword(auth, email, password)
-        .then(res => console.log(res))
+        .then(userCredentials => {
+            console.log(userCredentials)
+            setEmail('')
+            setPassword('')
+        })
         .catch(err => console.log(err))
     }
+
+    // when user is created on firebase, add that user with user id to Users table
+    function addUser(e) {
+        e.preventDefault()
+        
+    }
+    
 
 
     return (
