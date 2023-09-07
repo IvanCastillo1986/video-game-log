@@ -20,7 +20,6 @@ export default function GameForm({ method, oldGame }) {
         region: 'ntsc-j',
         year_released: '',
         platform_id: platformId,
-
     })
 
     useEffect(() => {
@@ -48,7 +47,6 @@ export default function GameForm({ method, oldGame }) {
                     region: 'ntsc-j',
                     year_released: '',
                     platform_id: null,
-
                 })
                 navigate(-1)
             }).catch(err => {

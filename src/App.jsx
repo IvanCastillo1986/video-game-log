@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './layout/navbar/Navbar';
@@ -10,7 +10,7 @@ import Sega from './pages/sega/Sega';
 import AddGame from './pages/add_game/AddGame';
 import EditGame from './pages/edit_game/EditGame';
 import NotFound from './pages/not_found/NotFound';
-
+import UserMustSignIn from './pages/user_must_sign_in/UserMustSignIn';
 
 import './App.scss';
 
@@ -23,6 +23,14 @@ function App() {
 
   const [user, setUser] = useState({});
 
+  const populateUser = async () => {
+    // this will make a call 
+  }
+
+  useEffect(() => {
+
+  }, []);
+
   
   return (
     <div className="App">
@@ -34,6 +42,7 @@ function App() {
             <Routes>
               <Route index element={<Home />} />
               <Route path="choose-console" element={<ChooseConsole />} />
+              <Route path="not-signed-in" element={<UserMustSignIn />} />
               <Route path="pc/*" element={<PC />} />
               <Route path="nintendo/*" element={<Nintendo />} />
               <Route path="sega/*" element={<Sega />} />

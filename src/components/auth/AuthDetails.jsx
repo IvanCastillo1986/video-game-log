@@ -48,7 +48,7 @@ export default function AuthDetails() {
 
     return (
         <div className='auth-details'>
-            <h3>AuthUser Status</h3>
+            <h3>User Status</h3>
             { authUser ?
             <>
                 <p>Signed in as {authUser.email}</p>

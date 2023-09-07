@@ -11,13 +11,11 @@ export default function Nintendo() {
 
     const location = useLocation()
 
-
     return (
         <div className='nintendo'>
             <h1>Nintendo</h1>
 
-            <Platform gameConsole={location.state.gameConsole} gameConsoleUrl={location.state.gameConsoleUrl} /> 
-
+            <Platform gameConsole={location.state.gameConsole} gameConsoleUrl={location.state.gameConsoleUrl} />
         </div>
     )
 }
