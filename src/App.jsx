@@ -24,7 +24,7 @@ function App() {
   const [user, setUser] = useState({});
 
   const populateUser = async () => {
-    // this will make a call 
+    // this will make a call to API that will set the user object
   }
 
   useEffect(() => {

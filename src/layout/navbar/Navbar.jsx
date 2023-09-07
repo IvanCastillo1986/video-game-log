@@ -10,10 +10,10 @@ export default function Navbar() {
     
     const {user, setUser} = useContext(UserContext)
 
-    const routeToPath = (routeDirectly) => {
+    const routeToPath = (url) => {
 
         if (user.email) {
-            if (routeDirectly) return routeDirectly
+            if (url) return url
             
             return "choose-console"
         } else {

@@ -2,18 +2,19 @@ import React, { useState, useEffect, useContext } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
 import { UserContext } from '../../App'
+import axios from 'axios'
 
 import LinkButton from '../../layout/link_button/LinkButton'
+
+const API = process.env.REACT_APP_API_URL
 
 
 export default function AuthDetails() {
 
     const [authUser, setAuthUser] = useState(null)
 
-
-    // console.log(authUser)
     const {user, setUser} = useContext(UserContext)
-    // console.log(user)
+
 
     // everytime the authUser state changes, the useEffect will trigger onAuthStateChanged()
     useEffect(() => {
@@ -44,6 +45,11 @@ export default function AuthDetails() {
         .catch(err => console.log(`Error signing out ${err}`))
     }
 
+    function handleDeleteUser() {
+        axios.delete(`${API}/users/${user.uid}`)
+            .then(res => console.log(res))
+    }
+
 
 
     return (
@@ -51,8 +57,11 @@ export default function AuthDetails() {
             <h3>User Status</h3>
             { authUser ?
             <>
-                <p>Signed in as {authUser.email}</p>
-                <LinkButton handleShowInfo={handleSignOut} message={'Sign Out'}></LinkButton>
+                <div>
+                    <p>Signed in as {authUser.email}</p> 
+                    <LinkButton message="Deactivate" btnContainerStyle={{display: "inline-block"}} btnClick={handleDeleteUser}/>
+                </div>
+                <LinkButton btnClick={handleSignOut} message={'Sign Out'}></LinkButton>
             </>
             :
             <p>Signed out</p>

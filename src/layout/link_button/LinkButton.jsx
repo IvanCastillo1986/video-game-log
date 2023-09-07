@@ -6,7 +6,7 @@ import './link-button.scss'
 
 
 export default function LinkButton({ 
-    url, message, btnStyle, btnContainerStyle, handleShowInfo, game, platformId 
+    url, message, btnStyle, btnContainerStyle, btnClick, game, platformId 
 }) {
 
     
@@ -21,7 +21,7 @@ export default function LinkButton({
                     {message} 
                 </Link>
                 :
-                <button onClick={handleShowInfo} className='link-btn-container__button' >{message}</button>
+                <button onClick={btnClick} className='link-btn-container__button' >{message}</button>
             }
         </div>
     )

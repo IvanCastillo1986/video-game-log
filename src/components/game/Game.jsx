@@ -24,11 +24,11 @@ export default function Game({ game, handleDelete }) {
                 </div>
                 
                 <LinkButton 
-                    handleShowInfo={handleShowInfo}
+                    btnClick={handleShowInfo}
                     url=''
                     btnContainerStyle={{display: 'inline', gridColumnStart: '8', gridColumnEnd: '10'}}
                     btnStyle={{background: '#f9700e', color: 'black', boxShadow: '0 0 13px 3px #f9700e,', fontWeight: 'bold'}}
-                    message='Show Info' 
+                    message='Show Info'
                 />
                 
                 <LinkButton 

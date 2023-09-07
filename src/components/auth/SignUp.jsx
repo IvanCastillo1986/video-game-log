@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
 import LinkButton from '../../layout/link_button/LinkButton'
+import axios from 'axios'
 
 import './sign-up.scss'
 
+const API = process.env.REACT_APP_API_URL
 
 export default function SignUp() {
 
@@ -16,17 +18,17 @@ export default function SignUp() {
 
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
-            console.log(userCredentials)
+            axios.post(`${API}/users`, {
+                email: userCredentials.user.email,
+                uuid: userCredentials.user.uid
+            })
+        })
+        .then(() => {
             setEmail('')
             setPassword('')
         })
         .catch(err => console.log(err))
-    }
 
-    // when user is created on firebase, add that user with user id to Users table
-    function addUser(e) {
-        e.preventDefault()
-        
     }
     
 
