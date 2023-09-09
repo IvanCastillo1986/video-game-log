@@ -21,7 +21,7 @@ export default function LinkButton({
                     {message} 
                 </Link>
                 :
-                <button onClick={btnClick} className='link-btn-container__button' >{message}</button>
+                <button onClick={btnClick} style={btnStyle} className='link-btn-container__button' >{message}</button>
             }
         </div>
     )

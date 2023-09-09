@@ -1,5 +1,11 @@
 .auth-details {
-    p {
-        display: inline;
+
+    &__user-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        column-gap: 20px;
     }
+    
 }

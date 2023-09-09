@@ -21,15 +21,8 @@ export const UserContext = createContext();
 
 function App() {
 
+  // This will be our UserContext's user state
   const [user, setUser] = useState({});
-
-  const populateUser = async () => {
-    // this will make a call to API that will set the user object
-  }
-
-  useEffect(() => {
-
-  }, []);
 
   
   return (

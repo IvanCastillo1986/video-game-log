@@ -17,12 +17,18 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 // Then, display games list in component's <ul>
 
 
+/*
+    TODO
+    Make call to API using both platform_id AND uuid
+*/
+
 
 export default function Platform({ gameConsole, gameConsoleUrl }) {
     const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const platformId = convertPlatformToId(gameConsoleUrl);
+    
     
     function populateGames() {
         try {
