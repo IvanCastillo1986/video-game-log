@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { convertPlatformToId } from '../../helper/convertPlatformToId.js'
+import { UserContext } from '../../App.jsx';
 
 import Loading from '../loading/Loading';
 import Game from '../game/Game';
 import LinkButton from '../../layout/link_button/LinkButton';
-import { convertPlatformToId } from '../../helper/convertPlatformToId.js'
+
 
 
 import './platform.scss';
@@ -19,6 +21,7 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 /*
     TODO
+    import the user context and use the uuid for API call
     Make call to API using both platform_id AND uuid
 */
 
@@ -28,13 +31,14 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     const [loading, setLoading] = useState(false);
 
     const platformId = convertPlatformToId(gameConsoleUrl);
-    
+    const { user } = useContext(UserContext)
     
     function populateGames() {
         try {
             setLoading(true);
 
-            axios.get(`${API}/games?platformId=${platformId}`) // /games?platformId=3
+            // axios.get(`${API}/games?platformId=${platformId}`) // /games?platformId=3
+            axios.get(`${API}/games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
             .then(res => {
                 setGames(res.data);
                 setLoading(false);
@@ -65,9 +69,11 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
         if (loading) {
             return <Loading />
         } else {
-            return games.map((game) => 
-                <Game game={game} key={game.id} handleDelete={handleDelete} />
-            )
+            if (games.length) {
+                return games.map((game) => 
+                   <Game game={game} key={game.id} handleDelete={handleDelete} />
+                )
+            }
         }
     }
 
@@ -82,13 +88,22 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
                 btnStyle={{animation: 'glimmer 4s infinite'}} 
                 platformId={platformId}
             />
-
-            <h2>Games</h2>
-            <ul>
-                {games &&
-                renderContent()
-                }
-            </ul>
+            {
+                games.length ?
+                <>
+                <h2>Games</h2>
+                <ul>
+                    {games &&
+                    renderContent()
+                    }
+                </ul>
+                </>
+                :
+                <>
+                <p style={{marginTop: '80px'}}>You have no games for this console.</p>
+                <p>But no worries, you can always start collecting some!</p>
+                </>
+            }
         </div>
     )
 };
