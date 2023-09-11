@@ -18,11 +18,19 @@ export default function GameForm({ method, oldGame }) {
     const { user } = useContext(UserContext)
 
     const [game, setGame] = useState({
+        platform_id: platformId,
+        user_id: user.uid,
         title: '',
         region: 'ntsc-j',
         year_released: '',
-        platform_id: platformId,
-        user_id: user.uid,
+        developer: '',
+        publisher: '',
+        director: '',
+        producer: '',
+        artist: '',
+        composer: '',
+        genre: '',
+        mode: ''
     })
 
     useEffect(() => {
@@ -44,7 +52,8 @@ export default function GameForm({ method, oldGame }) {
         try {
 
             axios.post(`${API}/games`, game)
-            .then(() => {
+            .then((res) => {
+                console.log(res)
                 setGame({
                     title: '',
                     region: 'ntsc-j',
@@ -65,7 +74,8 @@ export default function GameForm({ method, oldGame }) {
         e.preventDefault()
 
         axios.put(`${API}/games/${game.id}`, game)
-        .then(() => {
+        .then((res) => {
+            console.log(res)
             navigate(-1)
         }).catch(err => {
             console.log(`Error in GameForm editGame()`, err)
@@ -90,6 +100,31 @@ export default function GameForm({ method, oldGame }) {
 
                 <label htmlFor="year_released">Year Released:</label>
                 <input type="text" placeholder='Year Released' id='year_released' value={game.year_released} onChange={handleChange} required />
+                
+                <label htmlFor="developer">Developer:</label>
+                <input type="text" placeholder='Developer' id='developer' value={game.developer} onChange={handleChange} />
+                
+                <label htmlFor="publisher">Publisher:</label>
+                <input type="text" placeholder='Publisher' id='publisher' value={game.publisher} onChange={handleChange} />
+                
+                <label htmlFor="director">Director:</label>
+                <input type="text" placeholder='Director' id='director' value={game.director} onChange={handleChange} />
+                
+                <label htmlFor="producer">Producer:</label>
+                <input type="text" placeholder='Producer' id='producer' value={game.producer} onChange={handleChange} />
+                
+                <label htmlFor="artist">Artist:</label>
+                <input type="text" placeholder='Artist' id='artist' value={game.artist} onChange={handleChange} />
+                
+                <label htmlFor="composer">Composer:</label>
+                <input type="text" placeholder='Composer' id='composer' value={game.composer} onChange={handleChange} />
+                
+                <label htmlFor="genre">Genre:</label>
+                <input type="text" placeholder='Genre' id='genre' value={game.genre} onChange={handleChange} />
+                
+                <label htmlFor="mode">Mode:</label>
+                <input type="text" placeholder='Mode' id='mode' value={game.mode} onChange={handleChange} />
+
                 <button type="submit">Submit</button>
             </form>
         </>
