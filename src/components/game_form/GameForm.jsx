@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
+import { UserContext } from '../../App'
 
 
 import './game-form.scss'
@@ -14,12 +15,14 @@ export default function GameForm({ method, oldGame }) {
     const navigate = useNavigate()
     const location = useLocation()
     const { platformId } = location.state
+    const { user } = useContext(UserContext)
 
     const [game, setGame] = useState({
         title: '',
         region: 'ntsc-j',
         year_released: '',
         platform_id: platformId,
+        user_id: user.uid,
     })
 
     useEffect(() => {

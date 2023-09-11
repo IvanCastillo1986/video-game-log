@@ -1,3 +1,6 @@
+@import '../../design-utils/colors';
+
+
 .game {
     padding: 35px 0 35px 0;
     
@@ -24,6 +27,8 @@
     }
     &__trash-icon {
         color: #f706cf;
+        color: $neon-fuscia;
+
         :hover {
             cursor: pointer;
         }

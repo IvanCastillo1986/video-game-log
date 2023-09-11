@@ -19,13 +19,6 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 // Then, display games list in component's <ul>
 
 
-/*
-    TODO
-    import the user context and use the uuid for API call
-    Make call to API using both platform_id AND uuid
-*/
-
-
 export default function Platform({ gameConsole, gameConsoleUrl }) {
     const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -89,20 +82,21 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
                 platformId={platformId}
             />
             {
-                games.length ?
-                <>
+            games.length ?
+            <>
                 <h2>Games</h2>
                 <ul>
                     {games &&
                     renderContent()
                     }
                 </ul>
-                </>
+            </>
                 :
-                <>
+            <>
                 <p style={{marginTop: '80px'}}>You have no games for this console.</p>
                 <p>But no worries, you can always start collecting some!</p>
-                </>
+                <p>Reminder: &nbsp; Be sure to add new games once you get them.</p>
+            </>
             }
         </div>
     )

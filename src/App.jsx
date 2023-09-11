@@ -1,5 +1,6 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
+
 
 import Navbar from './layout/navbar/Navbar';
 import Home from './pages/home/Home';

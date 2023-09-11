@@ -27,7 +27,7 @@ export default function Game({ game, handleDelete }) {
                     btnClick={handleShowInfo}
                     url=''
                     btnContainerStyle={{display: 'inline', gridColumnStart: '8', gridColumnEnd: '10'}}
-                    btnStyle={{background: '#f9700e', color: 'black', boxShadow: '0 0 13px 3px #f9700e,', fontWeight: 'bold'}}
+                    btnStyle={{fontWeight: 'bold'}}
                     message='Show Info'
                 />
                 
