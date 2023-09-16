@@ -52,7 +52,7 @@ export default function GameForm({ method, oldGame }) {
 
         try {
 
-            axios.post(`${API}games`, game)
+            axios.post(`${API}/games`, game)
             .then(() => {
                 setGame({
                     title: '',
@@ -73,7 +73,7 @@ export default function GameForm({ method, oldGame }) {
     function editGame(e) {
         e.preventDefault()
 
-        axios.put(`${API}games/${game.id}`, game)
+        axios.put(`${API}/games/${game.id}`, game)
         .then(() => {
             navigate(-1)
         }).catch(err => {

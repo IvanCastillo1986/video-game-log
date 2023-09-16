@@ -27,14 +27,11 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     const { user } = useContext(UserContext)
     
     function populateGames() {
-        console.log(user.uid)
-        console.log(platformId)
-        console.log(API)
         try {
             setLoading(true);
 
             // axios.get(`${API}/games?platformId=${platformId}`) // /games?platformId=3
-            axios.get(`${API}games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
+            axios.get(`${API}/games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
             .then(res => {
                 setGames(res.data);
                 setLoading(false);
