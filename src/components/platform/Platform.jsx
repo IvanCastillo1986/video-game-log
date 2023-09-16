@@ -12,7 +12,6 @@ import LinkButton from '../../layout/link_button/LinkButton';
 import './platform.scss';
 
 const API = process.env.REACT_APP_API_URL;
-const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 
 // When Platform mounts, take browser url (snes), make api call to back-end /url route in useEffect
@@ -20,6 +19,7 @@ const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 
 export default function Platform({ gameConsole, gameConsoleUrl }) {
+
     const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -27,11 +27,14 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     const { user } = useContext(UserContext)
     
     function populateGames() {
+        console.log(user.uid)
+        console.log(platformId)
+        console.log(API)
         try {
             setLoading(true);
 
             // axios.get(`${API}/games?platformId=${platformId}`) // /games?platformId=3
-            axios.get(`${API}/games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
+            axios.get(`${API}games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
             .then(res => {
                 setGames(res.data);
                 setLoading(false);
