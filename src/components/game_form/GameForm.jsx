@@ -21,8 +21,9 @@ export default function GameForm({ method, oldGame }) {
         platform_id: platformId,
         user_id: user.uid,
         title: '',
-        region: 'ntsc-j',
+        region: 'ntsc-u',
         year_released: '',
+        summary: '',
         developer: '',
         publisher: '',
         director: '',
@@ -56,7 +57,7 @@ export default function GameForm({ method, oldGame }) {
             .then(() => {
                 setGame({
                     title: '',
-                    region: 'ntsc-j',
+                    region: 'ntsc-u',
                     year_released: '',
                     platform_id: null,
                 })
@@ -91,6 +92,7 @@ export default function GameForm({ method, oldGame }) {
                 
                 <label htmlFor="region">Region:</label>
                 <select id="region" value={game.region || ''} onChange={handleChange} required>
+                    <option value="n/a">N/A</option>
                     <option value="ntsc-j">NTSC-J (Japan and Asia)</option>
                     <option value="ntsc-u">NTSC-U (North America, South America)</option>
                     <option value="pal">PAL (Europe, Oceania, Middle East, India, South Africa)</option>
@@ -100,6 +102,9 @@ export default function GameForm({ method, oldGame }) {
                 <label htmlFor="year_released">Year Released:</label>
                 <input type="text" placeholder='Year Released' id='year_released' value={game.year_released} onChange={handleChange} required />
                 
+                <label htmlFor="summary">Summary:</label>
+                <textarea placeholder='Summary' id='summary' value={game.summary || ''} onChange={handleChange} />
+
                 <label htmlFor="developer">Developer:</label>
                 <input type="text" placeholder='Developer' id='developer' value={game.developer || ''} onChange={handleChange} />
                 

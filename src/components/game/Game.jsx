@@ -20,7 +20,7 @@ export default function Game({ game, handleDelete }) {
         <li className='game'>
             <div className='game__game-wrapper'>
                 <div className='game__game-info'>
-                    Title: {game.title} | Region: {game.region} | Year Released: {game.year_released}
+                    Title: {game.title} &nbsp; | &nbsp; Region: {game.region || 'N/A'} &nbsp; | &nbsp; Year Released: {game.year_released}
                 </div>
                 
                 <LinkButton 

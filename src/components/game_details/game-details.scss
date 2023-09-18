@@ -7,4 +7,8 @@
         margin: 10px;
     }
 
+    &__summary {
+        grid-column: 1 / -1;
+    }
+
 }

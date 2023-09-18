@@ -33,18 +33,15 @@ export default function GameDetails({ id }) {
 
     return (
         <div className='game-details'>
-            <div className='game-details__title'>Title: {game.title}</div>
-            <div className='game-details__region'>Region: {game.region}</div>
-            <div className='game-details__year'>Year Released: {game.year_released}</div>
-            <div className='game-details__description'>Description: Awesome friggin game!</div>
-            <div className='game-details__developer'>Developer: Konami</div>
-            <div className='game-details__publisher'>Publisher: Konami</div>
-            <div className='game-details__director'>Director: Nobuya Nakazato</div>
-            <div className='game-details__producer'>Producer: Kazumi Kitaue</div>
-            <div className='game-details__artist'>Artist: Nobuya Nakazato</div>
-            <div className='game-details__composer'>Composer: Miki Higashino</div>
-            <div className='game-details__genre'>Genre: Run and gun</div>
-            <div className='game-details__platforms'>Platforms: Single-player, cooperative</div>
+            <div className='game-details__summary'>Summary: {game.summary || 'N/A'}</div>
+            <div className='game-details__developer'>Developer: {game.developer || 'N/A'}</div>
+            <div className='game-details__publisher'>Publisher: {game.publisher || 'N/A'}</div>
+            <div className='game-details__director'>Director: {game.developer || 'N/A'}</div>
+            <div className='game-details__producer'>Producer: {game.producer || 'N/A'}</div>
+            <div className='game-details__artist'>Artist: {game.artist || 'N/A'}</div>
+            <div className='game-details__composer'>Composer: {game.composer || 'N/A'}</div>
+            <div className='game-details__genre'>Genre: {game.genre || 'N/A'}</div>
+            <div className='game-details__mode'>Mode: {game.mode || 'N/A'}</div>
         </div>
     )
 }

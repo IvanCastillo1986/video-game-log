@@ -30,9 +30,9 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
         try {
             setLoading(true);
 
-            // axios.get(`${API}/games?platformId=${platformId}`) // /games?platformId=3
             axios.get(`${API}/games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
             .then(res => {
+                console.log(res.data)
                 setGames(res.data);
                 setLoading(false);
             }).catch(err => {
@@ -55,7 +55,7 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
         .then(() => {
             // Is there a better way of doing this other than using populateGames() function to recall api or ?
             populateGames()
-        }).catch(err => console.error(`Error deleting game at index ${id}:`, err))
+        }).catch(err => console.error(`Error deleting game at with user id ${id}:`, err))
     }
 
     const renderContent = () => {
