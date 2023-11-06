@@ -31,7 +31,7 @@ export default function Navbar() {
             <nav className='navbar'>
                 <ul>
                     <div className='logo'>
-                        <li><Link to="/">
+                        <li><Link to="/"> 
                             <span className='navbar__faulty-letter-one'>H</span>om<span className='navbar__faulty-letter-two'>e</span>
                         </Link></li>
                     </div>
@@ -46,9 +46,9 @@ export default function Navbar() {
 
                 <div >
                     <div className='navbar__sun' />
-                
                 </div>
-                    <li className='navbar__email'>{user.email}</li>
+
+                <li className='navbar__email'>{user.email}</li>
             </nav>
         </>
     );

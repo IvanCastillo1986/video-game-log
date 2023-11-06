@@ -16,17 +16,18 @@ export default function GameDetails({ id }) {
 
     const getGame = async (id) => {
         try {
-
             await axios.get(`${API}/games/${id}`)
-            .then(res => {
-                setGame(res.data)
-            })
+                .then(res => {
+                    console.log(res)
+                    setGame(res.data)
+                })
         } catch(err) {
             console.log('Error in <GameDetails />:', err)
         }
     }
 
     useEffect(() => {
+        console.log('refetch')
         getGame(id)
     }, []);
 

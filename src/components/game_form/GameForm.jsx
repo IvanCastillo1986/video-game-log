@@ -75,7 +75,8 @@ export default function GameForm({ method, oldGame }) {
         e.preventDefault()
 
         axios.put(`${API}/games/${game.id}`, game)
-        .then(() => {
+        .then((res) => {
+            console.log(res)
             navigate(-1)
         }).catch(err => {
             console.log(`Error in GameForm editGame()`, err)
@@ -103,7 +104,8 @@ export default function GameForm({ method, oldGame }) {
                 <input type="text" placeholder='Year Released' id='year_released' value={game.year_released} onChange={handleChange} required />
                 
                 <label htmlFor="summary">Summary:</label>
-                <textarea placeholder='Summary' id='summary' value={game.summary || ''} onChange={handleChange} />
+                {/* <textarea placeholder='Summary' id='summary' value={game.summary || ''} onChange={handleChange} /> */}
+                <input type="text" placeholder='Summary' id='summary' value={game.summary || ''} onChange={handleChange} />
 
                 <label htmlFor="developer">Developer:</label>
                 <input type="text" placeholder='Developer' id='developer' value={game.developer || ''} onChange={handleChange} />
