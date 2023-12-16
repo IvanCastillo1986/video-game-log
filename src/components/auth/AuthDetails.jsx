@@ -46,7 +46,6 @@ export default function AuthDetails() {
     function handleSignOut() {
         signOut(auth)
         .then(() => {
-            console.log('Signed out successfully')
             setUser({})
         })
         .catch(err => console.log(`Error signing out ${err}`))
@@ -56,11 +55,13 @@ export default function AuthDetails() {
 
         deleteUser(user)
         .then((deletedUser) => {
-            console.log('user deleted from Firebase:', deletedUser)
+            // console.log('user deleted from Firebase:', deletedUser)
             
             // also deleting user from backend API
             axios.delete(`${API}/users/${user.uid}`)
-            .then(res => console.log('user deleted from back-end API:', res))
+            .then(res => {
+                // console.log('user deleted from back-end API:', res)
+            })
             .catch((err) => console.log('Error deleting from back-end API:', err))
         })
         .catch(err => console.log('Error deleting from Firebase:', err))

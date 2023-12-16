@@ -76,7 +76,6 @@ export default function GameForm({ method, oldGame }) {
 
         axios.put(`${API}/games/${game.id}`, game)
         .then((res) => {
-            console.log(res)
             navigate(-1)
         }).catch(err => {
             console.log(`Error in GameForm editGame()`, err)

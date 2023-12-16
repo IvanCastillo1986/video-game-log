@@ -18,7 +18,6 @@ export default function GameDetails({ id }) {
         try {
             await axios.get(`${API}/games/${id}`)
                 .then(res => {
-                    console.log(res)
                     setGame(res.data)
                 })
         } catch(err) {
@@ -27,7 +26,7 @@ export default function GameDetails({ id }) {
     }
 
     useEffect(() => {
-        console.log('refetch')
+        // console.log('refetch')
         getGame(id)
     }, []);
 

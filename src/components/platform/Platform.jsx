@@ -17,7 +17,6 @@ const API = process.env.REACT_APP_API_URL;
 // When Platform mounts, take browser url (snes), make api call to back-end /url route in useEffect
 // Then, display games list in component's <ul>
 
-
 export default function Platform({ gameConsole, gameConsoleUrl }) {
 
     const [games, setGames] = useState([]);
@@ -32,7 +31,6 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
 
             axios.get(`${API}/games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
             .then(res => {
-                console.log(res.data)
                 setGames(res.data);
                 setLoading(false);
             }).catch(err => {
