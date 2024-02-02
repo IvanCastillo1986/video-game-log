@@ -1,6 +1,6 @@
-import React, { useState, createContext } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
+import { AuthProvider } from './components/auth/AuthProvider';
 
 import Navbar from './layout/navbar/Navbar';
 import Home from './pages/home/Home';
@@ -15,40 +15,34 @@ import UserMustSignIn from './pages/user_must_sign_in/UserMustSignIn';
 
 import './App.scss';
 
-export const UserContext = createContext();
-
-
 
 
 function App() {
 
-  // This will be our UserContext's user state
-  const [user, setUser] = useState({});
-
   
   return (
-    <div className="App">
-          <UserContext.Provider value={{user, setUser}}>
-          <Navbar />
+    <AuthProvider>
+      <div className="App">
 
-          <main>
-            {/* Our Route paths are succeeded by an asterisk because we have deeper nested Routes */}
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path="choose-console" element={<ChooseConsole />} />
-              <Route path="not-signed-in" element={<UserMustSignIn />} />
-              <Route path="pc/*" element={<PC />} />
-              <Route path="nintendo/*" element={<Nintendo />} />
-              <Route path="sega/*" element={<Sega />} />
-              <Route path="add-game" element={<AddGame />} />
-              <Route path="edit-game" element={<EditGame />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
+        <Navbar />
 
-          </UserContext.Provider>
+        <main>
+          {/* Our Route paths are succeeded by an asterisk because we have deeper nested Routes */}
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="choose-console" element={<ChooseConsole />} />
+            <Route path="not-signed-in" element={<UserMustSignIn />} />
+            <Route path="pc/*" element={<PC />} />
+            <Route path="nintendo/*" element={<Nintendo />} />
+            <Route path="sega/*" element={<Sega />} />
+            <Route path="add-game" element={<AddGame />} />
+            <Route path="edit-game" element={<EditGame />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+
       </div>
-
+    </AuthProvider>
   );
 };
 

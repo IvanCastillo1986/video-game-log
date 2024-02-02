@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { convertPlatformToId } from '../../helper/convertPlatformToId.js'
-import { UserContext } from '../../App.jsx';
+import { UserContext } from '../auth/AuthProvider.jsx';
 
 import Loading from '../loading/Loading';
 import Game from '../game/Game';
@@ -23,7 +23,7 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     const [loading, setLoading] = useState(false);
 
     const platformId = convertPlatformToId(gameConsoleUrl);
-    const { user } = useContext(UserContext)
+    const user = useContext(UserContext)
     
     function populateGames() {
         try {

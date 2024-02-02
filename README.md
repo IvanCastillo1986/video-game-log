@@ -1,3 +1,5 @@
+https://retro-game-log.netlify.app/
+
 A website for retro Video Game Collectors. 
 Includes consoles from Atari all the way up to the Gamecube/PlayStation2 generation.
 

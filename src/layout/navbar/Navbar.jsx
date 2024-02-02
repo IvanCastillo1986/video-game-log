@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../App'
+import { UserContext } from '../../components/auth/AuthProvider';
 
 import './navbar.scss'
 
@@ -8,7 +8,7 @@ import './navbar.scss'
 
 export default function Navbar() {
     
-    const {user, setUser} = useContext(UserContext)
+    const user = useContext(UserContext)
 
     const routeToPath = (url) => {
 
