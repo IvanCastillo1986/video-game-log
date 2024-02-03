@@ -19,27 +19,3 @@ export default function Nintendo() {
         </div>
     )
 }
-
-
-
-
-
-
-
-
-
-
-{/* OLD HANDLING OF COMPONENT RENDERS
-
-            <Routes>
-                <Route index 
-                    element={
-                    <ChooseConsole gameConsoleLinks={gameConsoleLinks} handleClick={handleClick} /> 
-                    } 
-                />
-                
-                <Route path={`${gameConsoleUrl}/*`} 
-                    element={<Platform gameConsole={gameConsole} gameConsoleUrl={gameConsoleUrl}/>}
-                />
-            </Routes> 
-*/}

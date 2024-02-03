@@ -12,14 +12,13 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
 
-        // TODO:  when user state changes, we update the sessionStorage here
         onAuthStateChanged(auth, (authUser) => {
             if (authUser) {
                 setUser(authUser)
-                console.log('change in <AuthProvider/> detected:', authUser)
+                // console.log('change in <AuthProvider/> detected:', authUser)
             } else {
                 setUser({})
-                console.log('user signOut detected in <AuthProvider/>')
+                // console.log('user signOut detected in <AuthProvider/>')
             }
         })
         

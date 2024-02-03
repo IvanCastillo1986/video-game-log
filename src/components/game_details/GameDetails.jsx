@@ -5,7 +5,7 @@ import './game-details.scss'
 
 const API = process.env.REACT_APP_API_URL
 
-// Will be a page. The url will not match the component heirarchy.
+// A component to be toggled in <Game />.
 // Will recieve game details from whichever game for whichever console. 
 // Will display it with even more info
 // Will make a call to a video games API (probably wikipedia REST api)
@@ -26,7 +26,6 @@ export default function GameDetails({ id }) {
     }
 
     useEffect(() => {
-        // console.log('refetch')
         getGame(id)
     }, []);
 

@@ -14,7 +14,6 @@ export default function SignIn() {
     function signIn (e) {
         e.preventDefault()
 
-        // This is not yet holding persistence across page refreshes
         signInWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
             setEmail('')

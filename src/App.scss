@@ -3,6 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap');
 
 
+// FONTS
+@font-face {
+  font-family: 'Streamster';
+  src: url(fonts/Streamster.ttf);
+}
+
+
+
 .App {
   text-align: center;
   color: white;
@@ -31,9 +39,5 @@
 }
 
 
-// FONTS
-@font-face {
-  font-family: 'Streamster';
-  src: url(fonts/Streamster.ttf);
-}
+
 
