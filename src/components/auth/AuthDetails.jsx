@@ -52,7 +52,7 @@ export default function AuthDetails() {
     return (
         <div className='auth-details'>
             <h3>User Status</h3>
-            { Object.keys(user).length !== 0 ?
+            { user ?
             <>
                 <div className='auth-details__user-div'>
                     <p>Signed in as {user.email}</p> 

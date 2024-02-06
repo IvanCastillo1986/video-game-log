@@ -12,7 +12,7 @@ export default function Navbar() {
 
     const routeToPath = (url) => {
 
-        if (user.email) {
+        if (user) {
             if (url) return url
             
             return "choose-console"
@@ -48,7 +48,7 @@ export default function Navbar() {
                     <div className='navbar__sun' />
                 </div>
 
-                <li className='navbar__email'>{user.email}</li>
+                <li className='navbar__email'>{user?.email}</li>
             </nav>
         </>
     );

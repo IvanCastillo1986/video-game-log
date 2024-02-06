@@ -12,17 +12,20 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
 
-        onAuthStateChanged(auth, (authUser) => {
+        const unsubscribe = onAuthStateChanged(auth, (authUser) => {
             if (authUser) {
                 setUser(authUser)
                 // console.log('change in <AuthProvider/> detected:', authUser)
             } else {
-                setUser({})
+                setUser(null)
                 // console.log('user signOut detected in <AuthProvider/>')
             }
         })
+
+        return () => unsubscribe()
         
     }, [])
+
 
     return (
         <UserContext.Provider value={user}>

@@ -54,7 +54,7 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
             // Is there a better way of doing this other than using populateGames() function to recall api or ?
             populateGames();
         }).catch(err => console.error(`Error deleting game at with user id ${id}:`, err.message));
-    }
+    };
 
     const renderContent = () => {
         if (loading) {
@@ -62,28 +62,29 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
         } else {
             if (games.length) {
                 // if user has games for this console
+
                 return (
                     <>
-                        <LinkButton 
-                            url="/add-game" message="Add Game" 
-                            btnStyle={{animation: 'glimmer 4s infinite'}} 
-                            platformId={platformId}
-                        />
-
                         <h2>Games</h2>
                         <ul>
                             {games.map((game) => <Game game={game} key={game.id} handleDelete={handleDelete} />)}
                         </ul>
                     </>
                 );
+                
             } else {
                 // if user has NO games for this console
-                return(
-                    <p>
-                        You currently have no games for this console. <br />
-                        Add some and start tracking your collection!
-                    </p>
-                ) 
+                
+                if (user.email) { // if the condition is 'user' instead, it renders if instead of else
+                    return(
+                        <p>
+                            You currently have no games for this console. <br />
+                            Add some and start tracking your collection!
+                        </p>
+                    );
+                } else {
+                    return <p>Loading...</p>
+                }
             }
         }
     };
@@ -93,6 +94,12 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     return (
         <div className='platform'>
             <h2>{gameConsole}</h2>
+
+            <LinkButton 
+                url="/add-game" message="Add Game" 
+                btnStyle={{animation: 'glimmer 4s infinite'}} 
+                platformId={platformId}
+            />
 
             {renderContent()}
 

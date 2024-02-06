@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
 import { UserContext } from './auth/AuthProvider'
 
@@ -10,7 +10,8 @@ export default function PrivateRoutes() {
 
     const user = useContext(UserContext)
 
+
     return (
-        user.email ? <Outlet /> : <Navigate to='/not-signed-in' />
+        user ? <Outlet /> : <Navigate to='/not-signed-in' />
     )
 }
