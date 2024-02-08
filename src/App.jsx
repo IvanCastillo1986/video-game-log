@@ -8,6 +8,7 @@ import ChooseConsole from './pages/choose_console/ChooseConsole';
 import PC from './pages/pc/PC';
 import Nintendo from './pages/nintendo/Nintendo';
 import Sega from './pages/sega/Sega';
+import AllGames from './pages/all_games/AllGames';
 import AddGame from './pages/add_game/AddGame';
 import EditGame from './pages/edit_game/EditGame';
 import NotFound from './pages/not_found/NotFound';
@@ -33,6 +34,7 @@ function App() {
             <Route index element={<Home />} />
             
             <Route element={<PrivateRoutes />}>
+              <Route path="all-games" element={<AllGames />} />
               <Route path="choose-console" element={<ChooseConsole />} />
               <Route path="pc/*" element={<PC />} />
               <Route path="nintendo/*" element={<Nintendo />} />

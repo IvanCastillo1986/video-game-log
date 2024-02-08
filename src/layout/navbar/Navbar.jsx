@@ -11,14 +11,9 @@ export default function Navbar() {
     const user = useContext(UserContext)
 
     const routeToPath = (url) => {
-
-        if (user) {
-            if (url) return url
-            
-            return "choose-console"
-        } else {
-            return "not-signed-in"
-        }
+        if (url) return url
+        
+        return "choose-console"
     }
     
     // Will route to <UserMustSignIn /> component if no user context
@@ -41,6 +36,7 @@ export default function Navbar() {
                         <li><Link to={routeToPath("pc")}>PC</Link></li>
                         <li><Link to={routeToPath()} state={{company: 'nintendo'}}>Nintendo</Link></li>
                         <li><Link to={routeToPath()} state={{company: 'sega'}}>Sega</Link></li>
+                        <li><Link to={routeToPath("all-games")}>All</Link></li>
                     </div>
                 </ul>
 

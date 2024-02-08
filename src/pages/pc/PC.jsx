@@ -15,7 +15,7 @@ export default function PC() {
         <div className='pc'>
             <h1>PC</h1>
 
-            <Platform gameConsoleUrl={'pc'} />
+            <Platform gameConsole={'PC'} gameConsoleUrl={'pc'} />
         </div>
     )
 }

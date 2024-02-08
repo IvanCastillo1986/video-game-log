@@ -26,13 +26,25 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
     
     function populateGames() {
         try {
-            axios.get(`${API}/games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
-            .then(res => {
-                setGames(res.data);
-                setLoading(false);
-            }).catch(err => {
-                console.error(`Error in video game log REACT APP ${err.message}`);
-            })
+            if (gameConsole) {
+
+                axios.get(`${API}/games?platformId=${platformId}&uuid=${user.uid}`) // /games?platformId=3
+                .then(res => {
+                    setGames(res.data);
+                    setLoading(false);
+                }).catch(err => {
+                    console.error(`Error in video game log REACT APP ${err.message}`);
+                })
+
+            } else {
+                axios.get(`${API}/games?uuid=${user.uid}`)
+                .then(res => {
+                    console.log(res);
+                    setGames(res.data);
+                    setLoading(false);
+                })
+                .catch(err => console.log(`Error in REACT APP getting all user's games: ${err}`));
+            }
         } catch(err) {
             setLoading(false);
             console.log(`<Platform /> useEffect error: ${err.message}`);
@@ -89,17 +101,22 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
         }
     };
 
-
+    console.log(gameConsole)
 
     return (
         <div className='platform'>
-            <h2>{gameConsole}</h2>
 
-            <LinkButton 
-                url="/add-game" message="Add Game" 
-                btnStyle={{animation: 'glimmer 4s infinite'}} 
-                platformId={platformId}
-            />
+            {gameConsole &&
+                <>
+                <h2>{gameConsole !== 'PC' && gameConsole}</h2>
+
+                    <LinkButton 
+                        url="/add-game" message="Add Game" 
+                        btnStyle={{animation: 'glimmer 4s infinite'}} 
+                        platformId={platformId}
+                    />
+                </>
+            }
 
             {renderContent()}
 
