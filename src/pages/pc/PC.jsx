@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import Platform from '../../components/platform/Platform'
+import Platform from '../../components/platform/Platform';
 
 
-import './pc.scss'
+import './pc.scss';
 
 
 
@@ -17,5 +17,5 @@ export default function PC() {
 
             <Platform gameConsole={'PC'} gameConsoleUrl={'pc'} />
         </div>
-    )
-}
+    );
+};

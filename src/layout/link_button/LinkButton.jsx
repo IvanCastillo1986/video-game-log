@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import './link-button.scss'
+import './link-button.scss';
 
 
 
@@ -24,5 +24,5 @@ export default function LinkButton({
                 <button onClick={btnClick} style={btnStyle} className='link-btn-container__button' >{message}</button>
             }
         </div>
-    )
-}
+    );
+};

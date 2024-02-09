@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import Platform from '../../components/platform/Platform'
+import Platform from '../../components/platform/Platform';
 
-import './all-games.scss'
+import './all-games.scss';
 
 
 export default function AllGames() {
@@ -13,5 +13,5 @@ export default function AllGames() {
             <h1>All Games</h1>
             <Platform />
         </div>
-    )
-}
+    );
+};

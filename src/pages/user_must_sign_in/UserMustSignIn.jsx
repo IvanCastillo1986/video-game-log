@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import LinkButton from '../../layout/link_button/LinkButton'
+import LinkButton from '../../layout/link_button/LinkButton';
 
 
 
@@ -14,5 +14,5 @@ export default function UserMustSignIn() {
 
             <LinkButton message='Home' url='/' btnStyle={{width: "80px", marginTop: "60px"}} />
         </div>
-    )
-}
+    );
+};

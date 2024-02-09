@@ -1,6 +1,8 @@
+Deployed production url:
 https://retro-game-log.netlify.app/
 
-A website for retro Video Game Collectors. 
+
+A website for Retro Video Game collectors. 
 Includes consoles from Atari all the way up to the Gamecube/PlayStation2 generation.
 
 Enjoy logging and navigating your inventory to the Outrun color stylings of the 80’s era.

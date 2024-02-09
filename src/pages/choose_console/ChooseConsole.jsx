@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-import { NintendoConsoleLinks } from "../../models/NintendoLinks"
-import { SegaConsoleLinks } from "../../models/SegaLinks"
+import { NintendoConsoleLinks } from "../../models/NintendoLinks";
+import { SegaConsoleLinks } from "../../models/SegaLinks";
 
-import './chooseConsole.scss'
+import './chooseConsole.scss';
 
 
 
 export default function ChooseConsole() {
 
-    const [gameConsoles, setGameConsoles] = useState([])
-    const { company } = useLocation().state
+    const [gameConsoles, setGameConsoles] = useState([]);
+    const { company } = useLocation().state;
 
     useEffect(() => {
         if (company === 'nintendo') {
-            setGameConsoles(NintendoConsoleLinks)
+            setGameConsoles(NintendoConsoleLinks);
         } else if (company === 'sega') {
-            setGameConsoles(SegaConsoleLinks)
+            setGameConsoles(SegaConsoleLinks);
         }
-    }, [company])
+    }, [company]);
     
 
     return (
@@ -42,5 +42,5 @@ export default function ChooseConsole() {
                 )}
             </ul>
         </div>
-    )
-}
+    );
+};

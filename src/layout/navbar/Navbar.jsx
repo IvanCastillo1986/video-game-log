@@ -2,23 +2,19 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../components/auth/AuthProvider';
 
-import './navbar.scss'
+import './navbar.scss';
 
 
 
 export default function Navbar() {
     
-    const user = useContext(UserContext)
+    const user = useContext(UserContext);
 
     const routeToPath = (url) => {
-        if (url) return url
+        if (url) return url;
         
-        return "choose-console"
-    }
-    
-    // Will route to <UserMustSignIn /> component if no user context
-    // Will take to <ChooseConsole /> page  '/choose-console'
-    // ChooseConsole will display links only for the associated company's consoles
+        return "choose-console";
+    };
 
 
     return (

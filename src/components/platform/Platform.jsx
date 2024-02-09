@@ -39,7 +39,6 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
             } else {
                 axios.get(`${API}/games?uuid=${user.uid}`)
                 .then(res => {
-                    console.log(res);
                     setGames(res.data);
                     setLoading(false);
                 })
@@ -95,13 +94,12 @@ export default function Platform({ gameConsole, gameConsoleUrl }) {
                         </p>
                     );
                 } else {
-                    return <p>Loading...</p>
+                    return <p>Loading...</p>;
                 }
             }
         }
     };
 
-    console.log(gameConsole)
 
     return (
         <div className='platform'>

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import SignIn from '../../components/auth/SignIn'
-import SignUp from '../../components/auth/SignUp'
-import AuthDetails from '../../components/auth/AuthDetails'
+import SignIn from '../../components/auth/SignIn';
+import SignUp from '../../components/auth/SignUp';
+import AuthDetails from '../../components/auth/AuthDetails';
 
-import './home.scss'
+import './home.scss';
 
 
 export default function Home() {
@@ -18,5 +18,5 @@ export default function Home() {
             <SignUp />
             <AuthDetails />
         </div>
-    )
-}
+    );
+};

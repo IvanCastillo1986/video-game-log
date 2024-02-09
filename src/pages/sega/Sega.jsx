@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-import Platform from '../../components/platform/Platform'
+import Platform from '../../components/platform/Platform';
 
-import './sega.scss'
+import './sega.scss';
 
 
 
@@ -17,5 +17,5 @@ export default function Sega() {
 
             <Platform gameConsole={location.state.gameConsole} gameConsoleUrl={location.state.gameConsoleUrl} />
         </div>
-    )
-}
+    );
+};
