@@ -3,33 +3,47 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
 import LinkButton from '../../layout/link_button/LinkButton'
 import axios from 'axios'
+import { signUpValidations } from '../../validations'
+
+import AuthError from './AuthError'
 
 import './sign-up.scss'
 
 const API = process.env.REACT_APP_API_URL
 
+
 export default function SignUp() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
+    const [error, setError] = useState('')
 
     function signUp(e) {
         e.preventDefault()
 
-        createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredentials => {
-            axios.post(`${API}/users`, {
-                email: userCredentials.user.email,
-                uuid: userCredentials.user.uid
-            })
-        })
-        .then(() => {
-            setEmail('')
-            setPassword('')
-        })
-        .catch(err => console.log(err))
+        let errorMessage = signUpValidations(null, {email, password})
 
+        if (errorMessage) {
+            console.log('error:', errorMessage);
+            setError(errorMessage)
+        } else {
+            createUserWithEmailAndPassword(auth, email, password)
+            .then(userCredentials => {
+                axios.post(`${API}/users`, {
+                    email: userCredentials.user.email,
+                    uuid: userCredentials.user.uid
+                })
+            })
+            .then(() => {
+                setEmail('')
+                setPassword('')
+            })
+            .catch(err => {
+                console.log('Error at SignUp:', err)
+                errorMessage = signUpValidations(err)
+                setError(errorMessage);
+            })
+        }
     }
     
 
@@ -42,6 +56,8 @@ export default function SignUp() {
                 <input type="email" placeholder='E-mail' value={email} onChange={e => setEmail(e.target.value)} />
                 <input type="password" placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} />
                 <LinkButton type="submit" message='Sign Up'>Sign Up</LinkButton>
+
+                <AuthError message={error} />
             </form>
         </div>
     )
