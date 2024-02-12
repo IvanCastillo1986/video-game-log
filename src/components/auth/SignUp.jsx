@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
 import LinkButton from '../../layout/link_button/LinkButton'
 import axios from 'axios'
-import { signUpValidations } from '../../validations'
+import { signUpValidations, signUpErrors } from '../../validations'
 
 import AuthError from './AuthError'
 
@@ -21,11 +21,11 @@ export default function SignUp() {
     function signUp(e) {
         e.preventDefault()
 
-        let errorMessage = signUpValidations(null, {email, password})
-
-        if (errorMessage) {
-            console.log('error:', errorMessage);
-            setError(errorMessage)
+        const errorMessages = signUpValidations({email, password})
+        
+        if (errorMessages) {
+            console.log('error:', errorMessages);
+            setError(errorMessages)
         } else {
             createUserWithEmailAndPassword(auth, email, password)
             .then(userCredentials => {
@@ -40,12 +40,20 @@ export default function SignUp() {
             })
             .catch(err => {
                 console.log('Error at SignUp:', err)
-                errorMessage = signUpValidations(err)
-                setError(errorMessage);
+                const firebaseError = signUpErrors(err)
+                setError(firebaseError);
             })
         }
     }
     
+    const handleEmailChange = (e) => {
+        setEmail(() => e.target.value)
+        setError('')
+    }
+    const handlePasswordChange = (e) => {
+        setPassword(() => e.target.value)
+        setError('')
+    }
 
 
     return (
@@ -53,11 +61,19 @@ export default function SignUp() {
             <h2>Sign Up</h2>
 
             <form onSubmit={signUp}>
-                <input type="email" placeholder='E-mail' value={email} onChange={e => setEmail(e.target.value)} />
-                <input type="password" placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} />
+                <input type="email" placeholder='E-mail' value={email} onChange={handleEmailChange} />
+                <input type="password" placeholder='Password' value={password} onChange={handlePasswordChange} />
                 <LinkButton type="submit" message='Sign Up'>Sign Up</LinkButton>
 
-                <AuthError message={error} />
+                {
+                    Array.isArray(error) 
+                    ?
+                    error.map((err, idx) => {
+                        return <AuthError key={idx} message={err} />
+                    })
+                    :
+                    <AuthError message={error} />
+                }
             </form>
         </div>
     )
