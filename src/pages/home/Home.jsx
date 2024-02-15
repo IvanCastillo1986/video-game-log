@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import SignIn from '../../components/auth/SignIn';
 import SignUp from '../../components/auth/SignUp';
@@ -9,6 +9,8 @@ import './home.scss';
 
 export default function Home() {
 
+    const [deleteError, setDeleteError] = useState(false)
+
 
     return (
         <div className='home'>
@@ -16,7 +18,7 @@ export default function Home() {
 
             <SignIn />
             <SignUp />
-            <AuthDetails />
+            <AuthDetails deleteError={deleteError} />
         </div>
     );
 };

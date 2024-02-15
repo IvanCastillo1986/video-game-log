@@ -48,16 +48,14 @@ export default function SignUp() {
     
     const handleEmailChange = (e) => {
         setEmail(() => e.target.value)
-        setError('')
     }
     const handlePasswordChange = (e) => {
         setPassword(() => e.target.value)
-        setError('')
     }
 
 
     return (
-        <div className='sign-up'>
+        <div className='sign-up' onBlur={() => setError('')}>
             <h2>Sign Up</h2>
 
             <form onSubmit={signUp}>

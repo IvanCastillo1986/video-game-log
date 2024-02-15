@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { signOut, deleteUser } from 'firebase/auth'
 import { auth } from '../../firebase'
 import { UserContext } from './AuthProvider'
 import axios from 'axios'
 
 import LinkButton from '../../layout/link_button/LinkButton'
+import AuthError from './AuthError'
 
 import './auth-details.scss'
 
@@ -15,6 +16,8 @@ const API = process.env.REACT_APP_API_URL
 export default function AuthDetails() {
 
     const user = useContext(UserContext)
+
+    const [error, setError] = useState('')
 
     /*
         This is an authentication state observer.
@@ -42,15 +45,20 @@ export default function AuthDetails() {
             .then(res => {
                 // console.log('user deleted from back-end API:', res)
             })
-            .catch((err) => console.log('Error deleting from back-end API:', err))
+            .catch((err) => {
+                console.log('Error deleting from back-end API:', err)
+            })
         })
-        .catch(err => console.log('Error deleting from Firebase:', err))
+        .catch(err => {
+            console.log('Error deleting from Firebase:', err)
+            setError('You have been logged on for too long. \nFor security reasons: sign out, then sign in again in order to delete your account')
+        })
     }
     
 
 
     return (
-        <div className='auth-details'>
+        <div className='auth-details' onBlur={() => setError('')}>
             <h3>User Status</h3>
             { user ?
             <>
@@ -63,6 +71,7 @@ export default function AuthDetails() {
                         btnClick={() => handleDeleteUser(user)}
                     />
                 </div>
+                <AuthError message={error} />
 
                 <LinkButton btnClick={handleSignOut} message={'Sign Out'}></LinkButton>
             </>

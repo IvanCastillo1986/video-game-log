@@ -11,8 +11,6 @@ import "./sign-in.scss";
 
 export default function SignIn() {
 
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
     const [input, setInput] = useState({
         email: '',
         password: ''
@@ -25,7 +23,6 @@ export default function SignIn() {
         let errorMessage = signInValidations(input);
 
         if (errorMessage) {
-            console.log('error:', errorMessage);
             setError(errorMessage);
         } else {
             signInWithEmailAndPassword(auth, input.email, input.password)
@@ -41,12 +38,11 @@ export default function SignIn() {
 
     function handleChangeInput(e) {
         setInput((prevInput) => ({...prevInput, [e.target.type]: e.target.value}));
-        setError('');
     };
 
 
     return (
-        <div className='sign-in'>
+        <div className='sign-in' onBlur={() => setError('')}>
             <h2>Sign In</h2>
             <form onSubmit={signIn}>
                 <input type="email" placeholder='E-mail' value={input.email} onChange={handleChangeInput} />
